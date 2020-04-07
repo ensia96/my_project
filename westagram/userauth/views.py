@@ -9,10 +9,10 @@ class Sign_up(View):
     def get(self, request):
         data = json.loads(request.body)
         if Account.objects.get(name=data['name']):
-            return False
+            return 0
 
     def post(self, request):
-        if get() :
+        if self.get(self, request) :
             Account(
                 name       = get().data['name'],
                 password   = get().data['password']
@@ -26,10 +26,12 @@ class Sign_in(View):
         data = json.loads(request.body)
         if Account.objects.get(name=data['name']):
             userdata = Account.objects.get(name=data['name'])
-        # 불러온 userdata 에서 password value 를 추출하고, 비교해야함
+            userpw   = userdata.password
+            if userpw == data['password']:
+                return 1
 
     def post(self, request):
-        if get():
+        if Sign_in.get(self, request):
             return JsonResponse({'Message':'SUCCESS'}, status=200) # user exist, pw match
                 # pw unmatch 는 많은 정보를 제공하기 때문에 보안을 위해 구현 x
         else:
