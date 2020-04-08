@@ -12,8 +12,8 @@ class Sign_up(View):
             return JsonResponse({'Message':'ALREADY_EXIST'}, status=400) # already exist
         else :
             Account(
-                name       = get().data['name'],
-                password   = get().data['password']
+                name       = data['name'],
+                password   = data['password']
             ).save()
             return JsonResponse(status=200) # welcome!
 
