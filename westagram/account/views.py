@@ -13,24 +13,22 @@ class Signup(View):
                 name       = data['name'],
                 password   = data['password'],
             ).save()
+            return JsonResponse({'message':'SUCCESS'}, status=200)
         try:
             Users.objects.get(name = data['name'])
+            return JsonResponse({'message':'ALREADY_EXIST'}, status=400)
         except Exception:
             createuser()
-            return JsonResponse({'message':'SUCCESS'}, status=200)
-        else:
-            return JsonResponse({'message':'ALREADY_EXIST'}, status=400)
 
 class Signin(View):
     def post(self, request):
         data = json.loads(request.body)
         try:
             Users.objects.get(name = data['name'])
-        except Exception:
-            return JsonResponse({'message':'INVALID_USER'}, status=401)
-        else:
             user = Users.objects.get(name = data['name'])
             if user.password == data['password']:
                 return JsonResponse({'message':'SUCCESS'}, status=200)
             else:
                 return JsonResponse({'message':'INVALID_USER'}, status=401)
+        except Exception:
+            return JsonResponse({'message':'INVALID_USER'}, status=401)
