@@ -17,8 +17,8 @@ class Contents(View):
 
     def get(self, request):
         data = json.loads(request.body)
-        try:
-            target = {'comment_list':list(Comments.objects.filter(name = data['name']).values('contents'))}
-            return JsonResponse(target, status=200)
-        except Exception:
+        target = {'comment_list':list(Comments.objects.filter(name = data['name']).values('contents'))}
+        if target == {'comment_list':[]} : 
             return JsonResponse({'message':'NO_DATA'}, status=400)
+        else:
+            return JsonResponse(target, status=200)
