@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import Create, Search
+from .views import Contents
 
 urlpatterns = [
-    path('create', Create.as_view()),
-    path('search', Search.as_view()),
+    path('', Contents.as_view()),
 ]

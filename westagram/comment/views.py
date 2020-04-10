@@ -5,7 +5,7 @@ from django.views import View
 
 from .models import Comments
 
-class Create(View):
+class Contents(View):
     def post(self, request):
         data = json.loads(request.body)
         Comments(
@@ -15,7 +15,6 @@ class Create(View):
 
         return JsonResponse({'message':'SUCCESS'}, status=200)
 
-class Search(View):
     def get(self, request):
         data = json.loads(request.body)
         try:
