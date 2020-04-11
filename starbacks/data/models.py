@@ -22,6 +22,7 @@ class Allergy(models.Model): # 1 제품당, 0 ~ 알레르기
 class Description(models.Model): # 1 제품당, 0 ~ 2 설명
     desc_top    = models.TextField(blank=True)
     desc_btm    = models.TextField(blank=True)
+    product_id  = models.ForeignKey(Product, on_delete = models.CASCADE)
 
 class Ingredient(models.Model): # 1 제품당, 1 영양정보
     size_id     = models.CharField(max_length=20)
@@ -31,6 +32,7 @@ class Ingredient(models.Model): # 1 제품당, 1 영양정보
     sodium      = models.FloatField()
     fat         = models.FloatField()
     caffeine    = models.FloatField()
+    product_id  = models.ForeignKey(Product, on_delete = models.CASCADE)
 
 class Size(models.Model): # 1 영양정보당, 1 사이즈 ( 기준용량 )
     name        = models.CharField(max_length=20)
