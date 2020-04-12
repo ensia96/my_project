@@ -12,17 +12,13 @@ class Product(models.Model): # 관리할 핵심데이터인 각종 제품들 ( �
     name_en     = models.CharField(max_length=50)
     group_id    = models.ForeignKey(Group, on_delete = models.CASCADE)
 
-class Product_Allergy(models.Model): # 제품 - 알레르기 연결
-    product_id  = models.ForeignKey(Product, on_delete = models.CASCADE)
-    allergy_id  = models.ForeignKey(Allergy, on_delete = models.CASCADE)
-
 class Allergy(models.Model): # 1 제품당, 0 ~ 알레르기
     name        = models.CharField(max_length=20)
+    products    = models.ManytoManyField(Product)
 
-class Description(models.Model): # 1 제품당, 0 ~ 2 설명
-    desc_top    = models.TextField(blank=True)
-    desc_btm    = models.TextField(blank=True)
-    product_id  = models.ForeignKey(Product, on_delete = models.CASCADE)
+class Description(models.Model): # 1 제품당, 0 ~ 설명
+    description = models.TextField(blank=True)
+    products    = models.ManytoManyField(Product)
 
 class Ingredient(models.Model): # 1 제품당, 1 영양정보
     size_id     = models.CharField(max_length=20)
