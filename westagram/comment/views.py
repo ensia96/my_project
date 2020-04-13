@@ -20,5 +20,4 @@ class Contents(View):
         target = {'comment_list':list(Comments.objects.filter(name = data['name']).values('contents'))}
         if target == {'comment_list':[]} : 
             return JsonResponse({'message':'NO_DATA'}, status=400)
-        else:
-            return JsonResponse(target, status=200)
+        return JsonResponse(target, status=200)
