@@ -12,12 +12,7 @@ class Contents(View):
             name       = data['name'],
             contents   = data['contents'],
         ).save()
-
-        return JsonResponse({'message':'SUCCESS'}, status=200)
+        return HttpResponse(status=200)
 
     def get(self, request):
-        data = json.loads(request.body)
-        target = {'comment_list':list(Comments.objects.filter(name = data['name']).values('contents'))}
-        if target == {'comment_list':[]} : 
-            return JsonResponse({'message':'NO_DATA'}, status=400)
-        return JsonResponse(target, status=200)
+        return JsonResponse({'comment':list(Comments.objects.values())}, status=200)

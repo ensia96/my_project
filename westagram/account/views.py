@@ -10,7 +10,7 @@ class Signup(View):
         data = json.loads(request.body)
         try:
             Users.objects.get(name = data['name'])
-            return JsonResponse({'message':'ALREADY_EXIST'}, status=400)
+            return HttpResponse(status=400)
         except Exception:
             Users(
                 name       = data['name'],
