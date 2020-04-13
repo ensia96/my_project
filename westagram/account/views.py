@@ -3,29 +3,31 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 
-from .models import Users
+from .models import User
 
-class Signup(View):
+class UserView(View):
     def post(self, request):
         data = json.loads(request.body)
         try:
-            Users.objects.get(name = data['name'])
-            return HttpResponse(status=400)
-        except Exception:
-            Users(
+            if User.objects.filter(name = data['name']).exists():
+                return HttpResponse(status=400)
+            User(
                 name       = data['name'],
                 password   = data['password'],
             ).save()
             return HttpResponse(status=200)
+        except KeyError:
+            return JsonResponse({"message":"INVALID_KEYS"}, status=400)
 
-class Signin(View):
+class UserAuthView(View):
     def post(self, request):
         data = json.loads(request.body)
         try:
-            Users.objects.get(name = data['name'])
-            user = Users.objects.get(name = data['name'])
-            if user.password == data['password']:
-                return HttpResponse(status=200)
+            if User.objects.filter(name = data['name']).exists():
+                user = User.objects.get(name = data['name'])
+                if user.password == data['password']:
+                    return HttpResponse(status=200)
+                return HttpResponse(status=401)
             return HttpResponse(status=401)
-        except Exception:
-            return HttpResponse(status=401)
+        except KeyError:
+            return JsonResponse({"message":"INVALID_KEYS"}, status=400)

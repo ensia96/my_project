@@ -3,16 +3,17 @@ import json
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 
-from .models import Comments
+from .models import Comment
 
-class Contents(View):
+class ContentView(View):
     def post(self, request):
         data = json.loads(request.body)
-        Comments(
+        Comment(
             name       = data['name'],
-            contents   = data['contents'],
+            content    = data['contents'],
         ).save()
         return HttpResponse(status=200)
 
     def get(self, request):
-        return JsonResponse({'comment':list(Comments.objects.values())}, status=200)
+        user = request.GET.get('name', None)
+        return JsonResponse({'comment':list(Comment.objects.filter(name = user).values())}, status=200)
