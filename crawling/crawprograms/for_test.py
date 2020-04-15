@@ -20,5 +20,5 @@ for article in article_list:
     title = " ".join(title.split())
 
 
-# 마지막 질문
+# 마지막 알아볼것
 # findAll 에 인자로 오는 친구들
