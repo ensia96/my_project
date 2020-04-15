@@ -11,7 +11,7 @@ conn = sqlite3.connect('../data/billboard_100.sqlite3')
 c = conn.cursor()
 
 # 테이블 생성 구문 실행
-c.execute('''CREATE TABLE top100 (name, artist)''')
+c.execute('''CREATE TABLE top100 (rank, name, artist)''')
 
 bs = BeautifulSoup(requests.get("https://www.billboard.com/charts/hot-100").text, 'html.parser')
 
@@ -24,7 +24,7 @@ for bill in billboard:
         name = billname[i].text
         arti = billarti[i].text
         # 내용 삽입 구문 실행
-        c.execute(f"insert into top100 (name, artist) values ('{name}', '{arti}')")
+        c.execute(f"""insert into top100 (rank, name, artist) values ("{i+1}","{name}", "{arti}")""")
 
 # 변경사항 적용
 conn.commit()
@@ -32,4 +32,4 @@ conn.commit()
 # 종료
 conn.close()
 
-# 실패, 현재 오류 : sqlite3.OperationalError: near "t": syntax error
+# 성공, 결과파일 = ../data/billboard_100.sqlite3
