@@ -1,6 +1,5 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-
 import re
 
 options = webdriver.ChromeOptions()
@@ -8,18 +7,16 @@ options.add_argument('headless')
 options.add_argument('window-size=1920x1080')
 options.add_argument("disable-gpu")
 # 혹은 options.add_argument("--disable-gpu")
-
 driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=options)
-
 driver.implicitly_wait(1)
-
-driver.get('https://www.starbucks.co.kr/menu/drink_list.do') # starbuck url 접근
-bs = BeautifulSoup(driver.page_source, 'html.parser')
-
+#driver.get('https://www.starbucks.co.kr/menu/drink_list.do') # starbuck url 접근
+#bs = BeautifulSoup(driver.page_source, 'html.parser')
 
 # 음료 카테고리의 제품군 list 리턴
 
 def group_craw():
+    driver.get('https://www.starbucks.co.kr/menu/drink_list.do') # starbuck url 접근
+    bs = BeautifulSoup(driver.page_source, 'html.parser')
     target = bs.findAll('label',{'for':re.compile('product_*')})
     group_name = []
     for group in target:
@@ -30,6 +27,8 @@ def group_craw():
 # 제품명, 영양정보 list 리턴
 
 def product_name_ingredient_craw():
+    driver.get('https://www.starbucks.co.kr/menu/drink_list.do') # starbuck url 접근
+    bs = BeautifulSoup(driver.page_source, 'html.parser')
     target = bs.findAll('td')
 
     product = []
@@ -57,5 +56,29 @@ def product_name_ingredient_craw():
         if (i % 7) == 6: # 7로 나눈 나머지가 6 -> 카페인 ( caffeine )
             caffeine.append(product_name)
         i += 1
+
+
+driver.get('https://www.starbucks.co.kr/menu/drink_list.do')
+bs = BeautifulSoup(driver.page_source, 'html.parser')
+target = bs.findAll('a', {'class':'goDrinkView'})
+link_list=[]
+for i in range(len(target)):
+    link_list.append(target[i]['prod'])
+
+
+name_en = []
+description = []
+for link in link_list:
+    driver.get(f'https://www.starbucks.co.kr/menu/drink_view.do?product_cd={link}')
+    soe = BeautifulSoup(driver.page_source, 'html.parser')
+    desc_top = driver.find_element_by_class_name('t1')
+    desc_btm = driver.find_element_by_class_name('product_view_wrap2')
+    description.append(desc_top)
+    description.append(desc_btm)
+
+print(description)
+
+
+
 
 driver.quit() # 안닫아주면 계속 창생겨서 렉걸림;
