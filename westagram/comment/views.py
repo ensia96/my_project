@@ -4,8 +4,10 @@ from django.http import HttpResponse, JsonResponse
 from django.views import View
 
 from .models import Comment
+from account.utils import need_permission
 
 class ContentView(View):
+    @need_permission
     def post(self, request):
         data = json.loads(request.body)
         Comment(
