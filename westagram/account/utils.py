@@ -1,9 +1,17 @@
-import bcrypt
+import jwt
 
-from django.http import JsonResponse
 
-def givetoken(inja): # 토큰발행 함수
-    token = bcrypt.hashpw(inja.encode('utf-8'), bcrypt.gensalt()).decode('utf-8') # 로그인에 성공하면 함수 호출
-    return JsonResponse({'access-token':f'{token}'})
+# encoded_jwt = jwt.encode({'some':'payload'}, 'akdrh1133', algorithm='HS256').decode('utf-8')
+# decoded_jwt = jwt.decode(encoded_jwt, 'akdrh1133', algorithm='HS256')
 
-print(givetoken('akdrh1133'))
+
+# class Verify:
+#     def __init__(self, name, password):
+#         self.name = name
+#         self.password = password
+
+def mk_token(name, password): # 토큰 발급
+    return jwt.encode({'name':name}, password, algorithm='HS256').decode()
+
+def vf_token(token, input_pw): # 토큰 검증
+    return jwt.decode(token, input_pw, algorithm='HS256')
