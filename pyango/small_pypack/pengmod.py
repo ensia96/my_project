@@ -30,16 +30,14 @@ class MySet: # 내가 지정할 암호화방식 ( 몇 개의 버킷을 사용할
   def add(self, key):
     hash_value = self.hash_value(key) # 같은 class 의 함수내용 호출
     # 여기서 부터 구현
-    # self.bucket[hash_value]={key}
-    if self.bucket[hash_value]==None:
-      self.bucket[hash_value]={key}
-      return self.bucket
-    if key in self.bucket[hash_value]:
-      self.bucket[hash_value].add(key)
-      return self.bucket
-
-a = MySet(15)
-#a.add('wecode')
-c = a.add('weplay') 
-
-print(c)
+    if key in self.bucket: # 버킷 안에 같은 값이 있다면
+      return self.bucket # 아무것도 하지마!
+    for i in range(self.size): # 사이즈에 대해서 반복구문
+      if (hash_value+i)<self.size: # size 를 넘어가지 않는다면
+        if self.bucket[hash_value+i]==None: # 그 위치의 값이 비어있다면
+          self.bucket[hash_value+i]=key # 그 위치에 키를 넣어
+          return self.bucket # 그리고 결과를 내줘
+      else: # size 를 넘어간다면
+        if self.bucket[hash_value+i-self.size]==None: # 그 위의 값이 비어있다면
+          self.bucket[hash_value+i-self.size]=key # 그 위치에 키를 넣어
+          return self.bucket # 그리고 결과를 내줘
