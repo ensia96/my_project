@@ -30,7 +30,7 @@ def group_craw(bs): # 음료 카테고리의 제품군 list 리턴
 
 @get_source('https://www.starbucks.co.kr/menu/drink_list.do')
 def product_name_ingredient_craw(bs):# 제품명, 영양정보 list 리턴
-    target = bs.findAll('td')
+    target = bs.findAll('td') # list 추가 대신 db에 삽입방식으로 변경 예정
 
     product = []
     kcal = []
@@ -68,22 +68,25 @@ def mk_prod_list(func): # 제품 id list 를 돌려주는 데코레이터
         return func(product_id)
     return prod_id
 
-#@mk_prod_list
-#def test(i):
-#    print(i)
+# //*[@id="product_info01"]
 
 
-#name_en = []
-#description = []
-#for ids in product_id:
-#    driver.get(f'https://www.starbucks.co.kr/menu/drink_view.do?product_cd={ids}')
-#    soe = BeautifulSoup(driver.page_source, 'html.parser')
-#    desc_top = driver.find_element_by_class_name('t1')
-#    desc_btm = driver.find_element_by_class_name('product_view_wrap2')
-#    description.append(desc_top.text)
-#    description.append(desc_btm.text)
-#
-#print(len(description))
+
+name_en = []
+description = []
+size_list = []
+for ids in product_id:
+    driver.get(f'https://www.starbucks.co.kr/menu/drink_view.do?product_cd={ids}')
+    soe = BeautifulSoup(driver.page_source, 'html.parser')
+    desc_top = driver.find_element_by_class_name('t1')
+    desc_btm = driver.find_element_by_class_name('product_view_wrap2')
+    size = driver.find_element_by_xpath('/html/body/div[3]/div[7]/div[2]/div[1]/div[2]/form/fieldset/div/div[1]/div/div[1]')
+    # size = driver.find_element_by_xpath('/html/body/div[3]/div[7]/div[2]/div[1]/div[2]/form/fieldset/div/div[1]/div/div[1]')
+    description.append(desc_top.text)
+    description.append(desc_btm.text)
+    size_list.append(size)
+
+print(len(size_list))
 
 
 
