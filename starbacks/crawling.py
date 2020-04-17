@@ -59,34 +59,39 @@ def product_name_ingredient_craw(bs):# 제품명, 영양정보 list 리턴
         i += 1
 
 @get_source('https://www.starbucks.co.kr/menu/drink_list.do')
-def mk_prod_list(func): # 제품 id list 를 돌려주는 데코레이터
-    def prod_id(bs):
-        target = bs.findAll('a', {'class':'goDrinkView'})
-        product_id=[]
-        for i in range(len(target)):
-            product_id.append(target[i]['prod'])
-        return func(product_id)
-    return prod_id
+def mk_prodlist(bs):
+    def prod_list(func): # 제품 id list 를 돌려주는 데코레이터
+        def prod_id():
+            target = bs.findAll('a', {'class':'goDrinkView'})
+            product_id=[]
+            for i in range(len(target)):
+                product_id.append(target[i]['prod'])
+            return func(product_id)
+        return prod_id
+    return prod_list
 
 # //*[@id="product_info01"]
 
+@mk_prodlist()
+def testing(product):
+    name_en = []
+    description = []
+    size_set = []
+    
+    for ids in product:
+        driver.get(f'https://www.starbucks.co.kr/menu/drink_view.do?product_cd={ids}')
+        en = driver.find_element_by_xpath('/html/body/div[3]/div[7]/div[2]/div[1]/div[2]/div[1]/h4/span')
+        # desc_top = driver.find_element_by_class_name('t1')
+        # size = driver.find_element_by_xpath('/html/body/div[3]/div[7]/div[2]/div[1]/div[2]/form/fieldset/div/div[1]/div/div[1]')
+        # desc_btm = driver.find_element_by_class_name('product_view_wrap2')
+        name_en.append(en.text)
+        # description.append(desc_top.text)
+        # size_set.append(size.text)
+        # description.append(desc_btm.text)
+    return name_en
 
 
-name_en = []
-description = []
-size_list = []
-for ids in product_id:
-    driver.get(f'https://www.starbucks.co.kr/menu/drink_view.do?product_cd={ids}')
-    soe = BeautifulSoup(driver.page_source, 'html.parser')
-    desc_top = driver.find_element_by_class_name('t1')
-    desc_btm = driver.find_element_by_class_name('product_view_wrap2')
-    size = driver.find_element_by_xpath('/html/body/div[3]/div[7]/div[2]/div[1]/div[2]/form/fieldset/div/div[1]/div/div[1]')
-    # size = driver.find_element_by_xpath('/html/body/div[3]/div[7]/div[2]/div[1]/div[2]/form/fieldset/div/div[1]/div/div[1]')
-    description.append(desc_top.text)
-    description.append(desc_btm.text)
-    size_list.append(size)
-
-print(len(size_list))
+print(testing())
 
 
 
