@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import sqlite3
-import re
-import requests
+import sqlite3, re, requests
 
 #with sqlite3.connect('database.db') as conn: -> 배워볼것
 #    c = conn.cursor()

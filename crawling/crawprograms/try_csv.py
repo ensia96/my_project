@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import csv
-import re
-import requests
+import csv, re, requests
 
 newcsv = open("../data/billboard_100.csv", 'w+', encoding='utf-8')
 
