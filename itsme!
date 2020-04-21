@@ -1,0 +1,62 @@
+└── content
+    ├── pages 페이지?
+    └── posts 글들
+└── static
+    ├── admin ?
+    └── media 사진같은거 저장쓰
+└── src
+    ├── assets
+    │   └── scss
+    │       ├── base
+    │       └── mixins
+    ├── cms
+    │   └── preview-templates
+    ├── components
+    │   ├── Feed
+    │   ├── Icon
+    │   ├── Layout
+    │   ├── Page
+    │   ├── Pagination
+    │   ├── Post
+    │   │   ├── Author
+    │   │   ├── Comments
+    │   │   ├── Content
+    │   │   ├── Meta
+    │   │   └── Tags
+    │   └── Sidebar
+    │       ├── Author
+    │       ├── Contacts
+    │       ├── Copyright
+    │       └── Menu
+    ├── constants
+    ├── templates
+    └── utils
+## 목차
++ [특징](http://github.com/alxshelepenok/gatsby-starter-lumen#features)
++ [웹 성능 테스트](http://github.com/alxshelepenok/gatsby-starter-lumen#web-performance-tests)
++ [빠른 시작](http://github.com/alxshelepenok/gatsby-starter-lumen#quick-start)
++ [Netlify로 배포](http://github.com/alxshelepenok/gatsby-starter-lumen#deploy-with-netlify)
++ [폴더 구조](http://github.com/alxshelepenok/gatsby-starter-lumen#folder-structure)
++ [관련](http://github.com/alxshelepenok/gatsby-starter-lumen#related)
++ [기자](http://github.com/alxshelepenok/gatsby-starter-lumen#contributors)
++ [백서](http://github.com/alxshelepenok/gatsby-starter-lumen#backers)
++ [스폰서](http://github.com/alxshelepenok/gatsby-starter-lumen#sponsors)
++ [크레딧](http://github.com/alxshelepenok/gatsby-starter-lumen#credits)
++ [라이센스](http://github.com/alxshelepenok/gatsby-starter-lumen#license)
+
+## 특징
++ [Lost Grid](http://lostgrid.org).
++ [모던 글꼴 스택](https://bitsofco.de/the-new-system-font-stack)
++ [메이트라틴/구텐베르크](https://github.com/matejlatin/Gutenberg))에서 영감을 받은 아름다운 타이포그래피.
++ [PrismJS](http://prismjs.com)를 사용하여 코드 블록에서 구문 강조 표시
++ [Mobile-First](https://medium.com/@mrs_/mobile-first-css-48bc4cc3f60f) 개발 방식
++ 태그 및 범주별로 구성된 보관
++ 페이지 지정 지원
++ [Netlify CMS](https://www.netlifycms.org) 지원
++ Google Analytics.
++ 디스큐스 코멘트
++ [Flow](https://flow.org/) 정적 유형 확인
+
+## 웹 성능 테스트
++ 등대 보고서 - [웹 페이지테스트](https://www.webpagetest.org/result/190510_FE_3f2b13d0beed320f477467d433f56f43/)
++ 시각적 비교 - [WebPage]테스트](https://www.webpagetest.org/video/compare.php?tests=190510_KZ_1228c343ccf04148619a5d0b89a41f71,190510_RE_b3bfad442f32c690a9f420fe46025b8d,190510_RS_3b5f0bff2d95161351dc6934cadbf1cf,190510_SC_5c458c451941f81b129cc4171a817,190510_63_52d87437715facb2e9c66d228,190510_AS_741b29f5af5a6e54980d82826d7bbb5)

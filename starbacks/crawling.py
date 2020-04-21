@@ -13,6 +13,7 @@ driver.implicitly_wait(1)
 def get_source(i): # 소스 받아오는 데코레이터
     def deco_func(func):
         def get():
+            scrolling()
             driver.get(i)
             bs = BeautifulSoup(driver.page_source, 'html.parser')
             return func(bs)
