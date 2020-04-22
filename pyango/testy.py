@@ -28,10 +28,6 @@ def more_than_half(nums): # more_than_half([1,1,1,1,2,2,2,2,2,2,2,1])
     if nums.count(i) == alist[0]:
         return i
 
-
-
-
-
 def complexNumberMultiply(a, b):
     alist = []
     blist = []
