@@ -7,17 +7,23 @@ options.add_argument('headless')
 options.add_argument('window-size=1920x1080')
 options.add_argument("disable-gpu")
 
-# shoes, apparel-accessory, kids-shoes
+
+# shoes
+    # chucktaylorallstar, chuck70, onestar, jackpurcell
+# apparel-accessory
+    # tops, pants, accessory
+# kids-shoes
+    # baby-shoes, kids
 
 # 함수 새로 만들면, 끝에 항상 'driver.quit()' 붙이기
-gijun = 'apparel-accessory'
+gijun = 'kids'
 source=[
 "https://www.converse.co.kr/category/"+gijun,
 'a',
 {'class':'product-url'},
 'href',
-'description_'+gijun,
-['product_id','description'],
+'group_'+gijun,
+['product_id','group'],
 'https://www.converse.co.kr/product/'
 ]
 
@@ -42,8 +48,8 @@ def scroll_down(source): # 스크롤 다운 후 소스 반환
         return get
     return deco_func
 
-@scroll_down()
-def target_list(): # 소스에서 원하는 항목 목록 반환
+@scroll_down(source)
+def target_list(source): # 소스에서 원하는 항목 목록 반환
     def prod_list(func):
         def prod_id():
             target = source[-1].findAll(source[1], source[2])
@@ -59,34 +65,17 @@ def return_list(): # 제품id 리스트 반환용 함수
     return source[-1]
 
 @target_list()
-def for_project(): # 프로젝트용 함수
+def for_project(source): # 프로젝트용 함수
     print(f'{len(source[-1])}')
     newcsv = open(f"./data/{source[4]}.csv", 'w+', encoding='utf-8')
     csv.writer(newcsv).writerow(source[5])
     driver = webdriver.Chrome('/Users/ensia96/Documents/mydocs/chromedriver', options=options)
     driver.implicitly_wait(1)
     # 정보분류 정의는 craw_test 에서 붙여넣기
-    needed={}
-    kvp={}
-    keyinput=[]
-    valueinput=[]
     for ids in source[-1]:
-        driver.get(source[6]+ids)
-        for key in driver.find_elements_by_tag_name('dt'):
-            if key.text != '':
-                keyinput.append(key.text)
-        for value in driver.find_elements_by_tag_name('dd'):
-            if value.text != '':
-                valueinput.append(value.text)
-        for i in range(len(keyinput)):
-            if keyinput[i] != '소비자피해 보증보험':
-                kvp[keyinput[i]]=valueinput[i]
-        needed[ids]=kvp
+        csv.writer(newcsv).writerow([ids,9])
         print(f'제품 : {ids} ( {source[-1].index(ids)+1}/{len(source[-1])} )')
-        kvp={}
     print('정보 분류 완료')
-    for ids in source[-1]:
-        csv.writer(newcsv).writerow([ids,needed[ids]])
     newcsv.close()
     driver.quit()
 

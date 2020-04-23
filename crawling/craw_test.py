@@ -1,5 +1,4 @@
-#상품정보 추출구문
-
+# 상품정보 추출구문
     # gijun = 'shoes'
     # source=[
     # "https://www.converse.co.kr/category/"+gijun, # 스크롤 다운 주소
@@ -34,8 +33,22 @@
     # newcsv.close()
     # driver.quit()
 
-from craw import *
+# 카테고리
+    # 신발 1 / 의류 2 / 아동 3
 
-for_project()
+# 그룹
+    # 척테일러 1 / 척70 2 / 원스타 3 / 잭퍼셀 4
+    # 상의 5 / 하의 6 / 악세서리 7
+    # 유아 8 / 어린이 9
+    # for ids in source[-1]:
+        #     csv.writer(newcsv).writerow([ids,1])
+        #     print(f'제품 : {ids} ( {source[-1].index(ids)+1}/{len(source[-1])} )')
+        # print('정보 분류 완료')
+        # newcsv.close()
+        # driver.quit()
+
+#from craw import *
+
+#for_project()
 
 #get_csv() # 실루엣, 컬러 연결관계
