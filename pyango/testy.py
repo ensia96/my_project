@@ -52,9 +52,9 @@ def complexNumberMultiply(a, b):
     else: # 실수일때
         blist.append(b)
 
-    for m in alist:
-        for n in blist:
-            if 'i' in m
+    # for m in alist:
+    #     for n in blist:
+    #         if 'i' in m
     #result = 0
     # for m in alist: # m 은 a 인자를 실수부분과 허수부분으로 나눈 상태
     #     for n in blist: # n 은 b 인자를 실수부분과 허수부분으로 나눈 상태
@@ -62,7 +62,7 @@ def complexNumberMultiply(a, b):
     # return result
 
 
-complexNumberMultiply('11133i', '5+6i')
+# complexNumberMultiply('11133i', '5+6i')
 
 # a = x + yi 로 들어올 예정
 # b = z + mi 로 들어올 예정
@@ -70,3 +70,16 @@ complexNumberMultiply('11133i', '5+6i')
 # i = -1 의 제곱근 -> i 의 제곱 = -1
 # (a+b) * (x+y) = ax+ay+bx+by
 # str slice => list
+
+def factorial(n):
+    if (n == 0):
+        return 1
+    
+    return n * factorial(n-1)
+  
+
+def factorial(n):
+	result = 1
+	for i in range(n):
+		result *= (i+1)
+	return result
