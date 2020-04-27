@@ -5,9 +5,9 @@ from selenium.common.exceptions import NoSuchElementException
 # 제품코드, 상품 이름, 가격 , 성별, 색상당 이미지 개수, 긴 설명, 큰 이미지
 
 gijun = 'kids-shoes'
-driver = webdriver.Chrome('/Users/ensia96/Documents/mydocs/chromedriver')
-URL = "https://www.converse.co.kr/category/"+gijun
-driver.get(URL)
+driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver')
+#URL = "https://www.converse.co.kr/category/"+gijun
+#driver.get(URL)
 
 def scroll_down():
     SCROLL_PAUSE_TIME = 3
@@ -32,7 +32,7 @@ def get_product_codes():
     for product_url in product_urls:
         url = product_url.get_attribute('href')
         product_codes.append(url.split('/')[-1])
-    driver.quit() # product_data 에선 주석 풀어야함
+    #driver.quit()
 
     return product_codes
 
@@ -94,43 +94,43 @@ def get_csv(): # 실루엣, 컬러 연결관계
                 csv.writer(newcsv).writerow([code, silhouette])
     newcsv.close()
 
-    target = 'color'
-    newcsv = open(f"./data/{target}.csv", 'w+', encoding='utf-8')
-    csv.writer(newcsv).writerow(['product_codes', target])
-
-    color_list = ['000000','0000FF','009900','131936','6600CC','996633','999999','A39264','F0E4D2','FF0000','FF6600','FFB6C1','FFCC00','FFFFFF']
-    BASE_URL = 'https://www.converse.co.kr/category/shoes?color=%23'
-
-    for color in color_list:
-        driver.get(BASE_URL + color)
-        product_codes = []
-        if scroll_down():
-            product_codes = get_product_codes()
-            for code in product_codes:
-                csv.writer(newcsv).writerow([code, color])
-
-    color_list = ['000000','0000FF','009900','131936', '996633','999999', 'A39264','F0E4D2','FFFFFF']
-    BASE_URL = 'https://www.converse.co.kr/category/apparel-accessory?color=%23'
-
-    for color in color_list:
-        driver.get(BASE_URL + color)
-        product_codes = []
-        if scroll_down():
-            product_codes = get_product_codes()
-            for code in product_codes:
-                csv.writer(newcsv).writerow([code, color])
-
-    color_list = ['000000','131936', '999999','FF0000', 'FFB6C1', 'FFFFFF']
-    BASE_URL = 'https://www.converse.co.kr/category/kids-shoes?color=%23'
-
-    for color in color_list:
-        driver.get(BASE_URL + color)
-        product_codes = []
-        if scroll_down():
-            product_codes = get_product_codes()
-            for code in product_codes:
-                csv.writer(newcsv).writerow([code, color])
-    newcsv.close()
+#    target = 'color'
+#    newcsv = open(f"./data/{target}.csv", 'w+', encoding='utf-8')
+#    csv.writer(newcsv).writerow(['product_codes', target])
+#
+#    color_list = ['000000','0000FF','009900','131936','6600CC','996633','999999','A39264','F0E4D2','FF0000','FF6600','FFB6C1','FFCC00','FFFFFF']
+#    BASE_URL = 'https://www.converse.co.kr/category/shoes?color=%23'
+#
+#    for color in color_list:
+#        driver.get(BASE_URL + color)
+#        product_codes = []
+#        if scroll_down():
+#            product_codes = get_product_codes()
+#            for code in product_codes:
+#                csv.writer(newcsv).writerow([code, color])
+#
+#    color_list = ['000000','0000FF','009900','131936', '996633','999999', 'A39264','F0E4D2','FFFFFF']
+#    BASE_URL = 'https://www.converse.co.kr/category/apparel-accessory?color=%23'
+#
+#    for color in color_list:
+#        driver.get(BASE_URL + color)
+#        product_codes = []
+#        if scroll_down():
+#            product_codes = get_product_codes()
+#            for code in product_codes:
+#                csv.writer(newcsv).writerow([code, color])
+#
+#    color_list = ['000000','131936', '999999','FF0000', 'FFB6C1', 'FFFFFF']
+#    BASE_URL = 'https://www.converse.co.kr/category/kids-shoes?color=%23'
+#
+#    for color in color_list:
+#        driver.get(BASE_URL + color)
+#        product_codes = []
+#        if scroll_down():
+#            product_codes = get_product_codes()
+#            for code in product_codes:
+#                csv.writer(newcsv).writerow([code, color])
+#    newcsv.close()
 
     driver.quit()
 

@@ -39,24 +39,24 @@
         # 척테일러 1 / 척70 2 / 원스타 3 / 잭퍼셀 4
         # 상의 5 / 하의 6 / 악세서리 7
         # 유아 8 / 어린이 9
-    # taarget = 'group'
-    # gijun = 'kids'
-    # pk=9
-    # source=[
-    # "https://www.converse.co.kr/category/"+gijun,
-    # 'a',
-    # {'class':'product-url'},
-    # 'href',
-    # taarget+'_'+gijun,
-    # ['product_id',taarget],
-    # 'https://www.converse.co.kr/product/'
-    # ]
-    # for ids in source[-1]:
-        #     csv.writer(newcsv).writerow([ids,1])
-        #     print(f'제품 : {ids} ( {source[-1].index(ids)+1}/{len(source[-1])} )')
-        # print('정보 분류 완료')
-        # newcsv.close()
-        # driver.quit()
+    #    taarget = 'group'
+    #    gijun = 'kids'
+    #    pk=9
+    #    source=[
+    #    "https://www.converse.co.kr/category/"+gijun,
+    #    'a',
+    #    {'class':'product-url'},
+    #    'href',
+    #    taarget+'_'+gijun,
+    #    ['product_id',taarget],
+    #    'https://www.converse.co.kr/product/'
+    #    ]
+    #    for ids in source[-1]:
+    #        csv.writer(newcsv).writerow([ids,1])
+    #        print(f'제품 : {ids} ( {source[-1].index(ids)+1}/{len(source[-1])} )')
+    #    print('정보 분류 완료')
+    #    newcsv.close()
+    #    driver.quit()
 
 # 실루엣, 컬러 구분
     #import csv
@@ -157,27 +157,27 @@
 	#combinedcsv.close()
 
 # 그룹 테이블 병합
-	#import csv
-	#target = 'group'
-	#tlist = [
-	#'chucktaylorallstar', 'chuck70', 'onestar', 'jackpurcell',
-	#'tops', 'pants', 'accessory',
-	#'baby-shoes', 'kids']
-	#combine = []
-	#	
-	#for name in tlist:
-	#	with open(f'./data/{target}/{target}_{name}.csv', newline='') as opened:
-	#		data_reader = csv.DictReader(opened)
-	#		for row in data_reader:
-	#			combine.append([row['product_id'],row[target]])
-	#
-	#combinedcsv = open(f"./data/{target}/product_{target}.csv", 'w+', encoding='utf-8')
-	#csv.writer(combinedcsv).writerow(['product_id',target+'_id'])
-	#
-	#for row in combine:
-	#	csv.writer(combinedcsv).writerow(row)
-	#	
-	#combinedcsv.close()
+    #import csv
+    #target = 'group'
+    #tlist = [
+    #'chucktaylorallstar', 'chuck70', 'onestar', 'jackpurcell',
+    #'tops', 'pants', 'accessory',
+    #'baby-shoes', 'kids']
+    #combine = []
+    #	
+    #for name in tlist:
+    #	with open(f'./data/{target}/{target}_{name}.csv', newline='') as opened:
+    #		data_reader = csv.DictReader(opened)
+    #		for row in data_reader:
+    #			combine.append([row['product_id'],row[target]])
+    #
+    #combinedcsv = open(f"./data/{target}/product_{target}.csv", 'w+', encoding='utf-8')
+    #csv.writer(combinedcsv).writerow(['product_id',target+'_id'])
+    #
+    #for row in combine:
+    #	csv.writer(combinedcsv).writerow(row)
+    #	
+    #combinedcsv.close()
 
 # 사이즈 테이블 병합
     #import csv
@@ -262,7 +262,7 @@
 #from craw import *
 #for_project()
 
-#from crawling import *
-#get_csv()
+from crawling import *
+get_csv()
 #get_product_data('size')
 
