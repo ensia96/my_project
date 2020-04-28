@@ -12,7 +12,7 @@ def get_len_of_str(string): # get_len_of_str("sdfwevdfggtehbd")
     alist = []
     for i in string:
         if string.count(i) > 1:
-    	    a = string.split(i)
+            a = string.split(i)
     for j in a:
         b = len(j)
         alist.append(b)
@@ -74,9 +74,8 @@ def complexNumberMultiply(a, b):
 def factorial(n):
     if (n == 0):
         return 1
-    
+
     return n * factorial(n-1)
-  
 
 def factorial(n):
 	result = 1
@@ -85,54 +84,19 @@ def factorial(n):
 	return result
 
 
+def solution(N):
+    target = "{0:b}".format(N)
+    result = []
+    if target[-1]=='0':
+        target = target.split('1')
+        del target[-1]
+    else:
+        target = target.split('1')
 
+    for tar in target:
+        standard = tar.count('0')
+        result.append(standard)
+    result.sort()
+    return result[-1]
 
-#class DetailView(View):
-#    def get(self,request,product_code):
-#        product = Product.objects.get(code = product_code)
-#        series = Series.objects.filter(product = product.id)
-#        medias = Media.objects.filter(product = product.id)
-#        list_code  = []
-#        list_image = []
-#        list_media = []
-#
-#        for content in series:
-#            list_code.append(content.code)
-#            list_image.append(content.image)
-#        for media in medias:
-#            list_media.append(media.media_url)
-#
-#        data = [{
-#            'code'         : product.code,
-#            'name'         : product.name,
-#            'price'        : product.price,
-#            'gender'       : product.gender,
-#            'summary'      : product.detail.summary,
-#            'size_img'     : product.detail.size_img,
-#            'series_code'  : list_code,
-#            'series_image' : list_image,
-#            'media_url'    : list_media,
-#            'description'  : product.detail.description,
-#            'desc_img'     : product.detail.desc_img,
-#            'information'  : product.detail.information,
-#        }]
-#        return JsonResponse({'product_detail': data},status=200)
-
-#class CategoryView(View):
-#    def get(self,request):
-#        data_list = []
-#        products = Product.objects.all()
-#
-#        for i in range(1,10):
-#            product = Product.objects.get(id=i)
-#            media_list = list(Media.objects.filter(product=i))[0]
-#            hover_list = list(Media.objects.filter(product=i))[1]
-#            data_list.append({
-#                'code'        : product.code,
-#                'name'        : product.name,
-#                'price'       : product.price,
-#                'image'       : media_list.media_url,
-#                'hover_image' : hover_list.media_url,
-#
-#            })
-#        return JsonResponse({'shoes':data_list},status=200)
+solution(20)
