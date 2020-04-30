@@ -5,7 +5,7 @@ SECRET={
 DATABASES = {
 	'default' : {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'converse_test',
+		'NAME': 'converse',
 		'USER': 'root',
 		'PASSWORD': 'dptmzbdpf',
 		'HOST': 'localhost',

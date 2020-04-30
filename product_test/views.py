@@ -5,6 +5,9 @@ from django.views import View
 
 from .models import *
 
+#Review.objects.create(rating=4,color_score=2,size_score=1,title='하하호호망고망고',comment='망고는 슈퍼개발자라구!',product=Product.objects.get(id=1),user=User.objects.get(name='춤망쓰')
+# User.objects.create(email='mango@man.go',password='tbvjvkdnj1!!',name='춤망쓰',gender='망고',phone='010-5150-6992',birth='19000625')
+
 class FilterView(View):
     def get(self, request,category_name):
         product = Product.objects.filter(category__name=category_name)
@@ -14,15 +17,12 @@ class FilterView(View):
                 'gender': list(
                     set([gen['gender'] for gen in product.values('gender')]).difference(['남녀공용','유니섹스'])
                 ),
-                'color':{
-                    value[0]:value[1] for (key,value) in sorted(
-                        {col['id']:
-                         (
-                             col['color_name'],col['color_code']
-                         ) for col in Color.objects.filter(
-                            product__in=product).values()
-                        }.items())},
-                'size':[
+                'color' : [
+                        {'name':value[0], 'code':value[1]} for (key,value) in sorted(
+                            {
+                                color['id'] : (color['color_name'],color['color_code'])
+                                for color in Color.objects.filter(product__in = product).values()
+                            }.items())],                'size':[
                     siz[1] for siz in sorted(
                         {
                             siz['id']:siz['size'
