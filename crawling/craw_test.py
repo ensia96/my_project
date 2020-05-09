@@ -262,7 +262,7 @@
 #from craw import *
 #for_project()
 
-from crawling import *
-get_csv()
+#from crawling import *
+#get_csv()
 #get_product_data('size')
 

@@ -1,0 +1,12 @@
+<h1>망고네 투표소!</h1>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+<h3><a href="/">블로그로 돌아가기!</a></h3>
