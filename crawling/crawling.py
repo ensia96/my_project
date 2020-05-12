@@ -9,7 +9,10 @@ driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver')
 #URL = "https://www.converse.co.kr/category/"+gijun
 #driver.get(URL)
 
-def scroll_down():
+def scroll_down(target): # 인자로 온 링크에 대해 스크롤다운
+    driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver')
+    driver.get(target)
+
     SCROLL_PAUSE_TIME = 3
 
     last_height = driver.execute_script("return document.body.scrollHeight;")

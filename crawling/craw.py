@@ -1,89 +1,152 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
-import re, csv, time
+from selenium.webdriver.common.keys import Keys
+import time, csv
+from datetime import datetime
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('window-size=1920x1080')
 options.add_argument("disable-gpu")
+#driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=options)
+driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver')
 
-# 함수 새로 만들면, 끝에 항상 'driver.quit()' 붙이기
+def scroll_down(target): # 인자로 온 링크에 대해 스크롤다운
+    driver.get(target)
 
-# shoes
-    # chucktaylorallstar, chuck70, onestar, jackpurcell
-# apparel-accessory
-    # tops, pants, accessory
-# kids-shoes
-    # baby-shoes, kids
-taarget = 'group'
-gijun = 'kids'
-pk=9
-source=[
-"https://www.converse.co.kr/category/"+gijun,
-'a',
-{'class':'product-url'},
-'href',
-taarget+'_'+gijun,
-['product_id',taarget],
-'https://www.converse.co.kr/product/'
-]
+    SCROLL_PAUSE_TIME = 3
 
-def scroll_down(source): # 스크롤 다운 후 소스 반환
-    def deco_func(func):
-        def get():
-            driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver')
-            driver.get(source[0])
-            last_height = driver.execute_script("return document.body.scrollHeight;")
-            new_height = 0
-            while True:
-                for i in range(11):
-                    driver.execute_script(f"window.scrollTo({new_height}, document.body.scrollHeight * {i/10});")
-                    time.sleep(0.01)
-                time.sleep(3)
-                new_height = driver.execute_script("return document.body.scrollHeight;")
-                if new_height == last_height:
-                    source.append(BeautifulSoup(driver.page_source, 'html.parser'))
-                    driver.quit()
-                    return func(source)
-                last_height = new_height
-        return get
-    return deco_func
+    last_height = driver.execute_script("return document.body.scrollHeight;")
+    new_height = 0
 
-@scroll_down(source)
-def target_list(source): # 소스에서 원하는 항목 목록 반환
-    def prod_list(func):
-        def prod_id():
-            target = source[-1].findAll(source[1], source[2])
-            product_id=[]
-            for i in range(len(target)):
-                product_id.append(target[i][source[3]].split('/')[-1])
-                source.append(product_id)
-            return func(source)
-        return prod_id
-    return prod_list
+    while True:
+        for i in range(11):
+            driver.execute_script(f"window.scrollTo({new_height}, document.body.scrollHeight * {i/10});")
+            time.sleep(0.01)
+        time.sleep(SCROLL_PAUSE_TIME)
+        new_height = driver.execute_script("return document.body.scrollHeight;")
 
-def return_list(): # 제품id 리스트 반환용 함수
-    return source[-1]
+        if new_height == last_height:
+            return True
+        last_height = new_height
 
-@target_list()
-def for_project(source): # 프로젝트용 함수
-    print(f'{len(source[-1])}')
-    newcsv = open(f"./data/group/{source[4]}.csv", 'w+', encoding='utf-8')
-    csv.writer(newcsv).writerow(source[5])
-    driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=options)
-    driver.implicitly_wait(1)
-    # 정보분류 정의는 craw_test 에서 붙여넣기
-    for ids in source[-1]:
-        csv.writer(newcsv).writerow([ids,pk])
-        print(f'제품 : {ids} ( {source[-1].index(ids)+1}/{len(source[-1])} )')
-    print('정보 분류 완료')
-    newcsv.close()
+def login(target):
+    driver.get(target)
+    a = driver.find_element_by_css_selector('#right-content > a')
+    a.click()
+    email = driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[1]/div/div[1]/input')
+    click_next = driver.find_element_by_xpath('/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/span/span')
+    email.send_keys('manchumgo@gmail.com')
+    click_next.click()
+    time.sleep(2)
+    password = driver.find_element_by_css_selector('#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input')
+    password.send_keys('akdrh1133!')
+    time.sleep(2)
+    driver.find_element_by_css_selector('#passwordNext > span').click()
+    time.sleep(2)
+    return True
+
+def for_main(target):
+
+    login(target)
+
+    if scroll_down(target):
+
+        for i in driver.find_elements_by_css_selector(
+            '.previous-items-button.ytmusic-carousel, .next-items-button.ytmusic-carousel'
+        ): # for click
+            driver.execute_script("arguments[0].click();", i)
+            time.sleep(0.1)
+
+        for i in range(11): # for render
+            driver.execute_script(f"window.scrollTo(0, document.body.scrollHeight * {i/10});")
+            time.sleep(0.01)
+
+    time.sleep(5)
+
+    main = driver.find_element_by_css_selector('#contents.ytmusic-section-list-renderer')
+
+    main_list = []
+
+    if main.find_element_by_tag_name('picture').find_element_by_tag_name('img').get_attribute('src'):
+        main_list.append({'main_thumb':main.find_element_by_tag_name('picture').find_element_by_tag_name('img').get_attribute('src')})
+
+    source = main.find_elements_by_css_selector('#contents > ytmusic-immersive-carousel-shelf-renderer')
+    source += main.find_elements_by_css_selector('#contents > ytmusic-carousel-shelf-renderer')
+
+#    when = datetime.today().strftime("%Y-%m-%d %H:%M") # 자동으로 오늘날짜를 지정해줘요!
+#    newcsv = open(f"./ym_data/{when}.csv", 'w+', encoding='utf-8')
+#    csv.writer(newcsv).writerow(['collection'])
+#    for sou in source: # 사용자 있을 때 리스트
+#        print(sou.find_element_by_tag_name('h2').get_attribute('aria-label'))
+#        csv.writer(newcsv).writerow([sou.find_element_by_tag_name('h2').get_attribute('aria-label')])
+#    newcsv.close()
+
+#    for sou in source:
+#        main_list.append(
+#            {
+#                'collection ': sou.find_element_by_tag_name('h2').get_attribute('aria-label'),
+#                'elements   ': [
+#                    {
+#                        'thumb':h.find_element_by_id('img').get_attribute('src'),
+#                        'name':h.find_element_by_css_selector('.image-wrapper').get_attribute('title'),
+#                        'link':h.find_element_by_css_selector('.image-wrapper').get_attribute('href'),
+#                        'type':h.find_element_by_css_selector('.subtitle').text[
+#                            :h.find_element_by_css_selector('.subtitle').text.find('•')-1],
+#                        'artist':{
+#                            'name':h.find_element_by_css_selector('.subtitle').text[
+#                                h.find_element_by_css_selector('.subtitle').text.find('•')+2:],
+##                            'link':[
+##                                h.find_elements_by_css_selector('a.yt-formatted-string')[1].get_attribute('href')
+##                                if len(h.find_elements_by_css_selector('a.yt-formatted-string')) > 1 else None
+##                            ]
+#                        }
+#                    }
+#                    for i in sou.find_elements_by_tag_name('ul')
+#                    for h in i.find_elements_by_css_selector('ytmusic-two-row-item-renderer')
+#                ]
+#            }
+#        )
+#    print(main_list)
+
+    driver.quit()
+
+def for_hotlist(target):
+
+    hotlist = driver.find_elements_by_css_selector('ytmusic-full-bleed-item-renderer')
+
+    hot_list = [
+        {
+            'thumbnail':hot.find_element_by_css_selector('img.yt-img-shadow').get_attribute('src'),
+            'song_name':hot.find_element_by_css_selector('.title.ytmusic-full-bleed-item-renderer').text,
+            'artist':hot.find_element_by_css_selector(
+                '.subtitle.ytmusic-full-bleed-item-renderer'
+            ).get_attribute('title')[
+                :hot.find_element_by_css_selector(
+                    '.subtitle.ytmusic-full-bleed-item-renderer'
+                ).get_attribute('title').find('•')-1
+            ],
+            'views':hot.find_element_by_css_selector(
+                '.subtitle.ytmusic-full-bleed-item-renderer'
+            ).get_attribute('title')[
+                hot.find_element_by_css_selector(
+                    '.subtitle.ytmusic-full-bleed-item-renderer'
+                ).get_attribute('title').find('•')+6:-1
+            ]
+        }
+        for hot in hotlist
+    ]
+
+    print(hot_list)
+
     driver.quit()
 
 #############################################################################################
 
-for_project()
+#for_main('https://music.youtube.com')
 
+#for_hotlist('https://music.youtube.com/hotlist')
+
+#driver.quit()
 
 ###################################### 연 구 중 ###############################################
 
