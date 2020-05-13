@@ -3,11 +3,14 @@ from selenium.webdriver.common.keys import Keys
 import time, csv
 from datetime import datetime
 
-options = webdriver.ChromeOptions()
-options.add_argument('headless')
-options.add_argument('window-size=1920x1080')
-options.add_argument("disable-gpu")
-#driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=options)
+def headless():
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    options.add_argument('window-size=1920x1080')
+    options.add_argument("disable-gpu")
+    return options
+
+#driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=headless())
 driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver')
 
 def scroll_down(target): # 인자로 온 링크에 대해 스크롤다운
@@ -73,13 +76,13 @@ def for_main(target):
     source = main.find_elements_by_css_selector('#contents > ytmusic-immersive-carousel-shelf-renderer')
     source += main.find_elements_by_css_selector('#contents > ytmusic-carousel-shelf-renderer')
 
-#    when = datetime.today().strftime("%Y-%m-%d %H:%M") # 자동으로 오늘날짜를 지정해줘요!
-#    newcsv = open(f"./ym_data/{when}.csv", 'w+', encoding='utf-8')
-#    csv.writer(newcsv).writerow(['collection'])
-#    for sou in source: # 사용자 있을 때 리스트
-#        print(sou.find_element_by_tag_name('h2').get_attribute('aria-label'))
-#        csv.writer(newcsv).writerow([sou.find_element_by_tag_name('h2').get_attribute('aria-label')])
-#    newcsv.close()
+    when = datetime.today().strftime("%Y-%m-%d %H:%M") # 자동으로 오늘날짜를 지정해줘요!
+    newcsv = open(f"./ym_data/{when}.csv", 'w+', encoding='utf-8')
+    csv.writer(newcsv).writerow(['collection'])
+    for sou in source: # 사용자 있을 때 리스트
+        print(sou.find_element_by_tag_name('h2').get_attribute('aria-label'))
+        csv.writer(newcsv).writerow([sou.find_element_by_tag_name('h2').get_attribute('aria-label')])
+    newcsv.close()
 
 #    for sou in source:
 #        main_list.append(
@@ -140,30 +143,14 @@ def for_hotlist(target):
 
     driver.quit()
 
+def for_artist(target):
+    target = 'https://music.youtube.com/tasteprofile'
+
+
 #############################################################################################
 
-#for_main('https://music.youtube.com')
+for_main('https://music.youtube.com')
 
 #for_hotlist('https://music.youtube.com/hotlist')
 
 #driver.quit()
-
-###################################### 연 구 중 ###############################################
-
-# def find_text(product): # 태그의 text 정보를 추출하고 싶을 때 쓰는 함수
-#     driver = webdriver.Chrome('/Users/ensia96/Documents/mydocs/chromedriver', options=options)
-#     driver.implicitly_wait(1)
-#     testing = []
-#     for ids in product:
-#         driver.get(f'{link}{ids}')
-#         testing.append(driver.find_element_by_xpath(xpath).text)
-#     return testing
-
-# def find_attr(product): # 태그의 특정 속성값을 추출하고 싶을 때 쓰는 함수
-#     driver = webdriver.Chrome('/Users/ensia96/Documents/mydocs/chromedriver', options=options)
-#     driver.implicitly_wait(1)
-#     testing = []
-#     for ids in product:
-#         driver.get(f'{link}{ids}')
-#         testing.append(driver.find_element_by_xpath(xpath).get_attribute(need_attr))
-#     return testing
