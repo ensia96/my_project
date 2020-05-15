@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import time, csv
+import os, time, csv
 from datetime import datetime
 
 def headless():
@@ -70,78 +70,132 @@ def for_main(target):
 
     scroll_down(target)
 
-    item_render()
-
     time.sleep(5)
 
     main = driver.find_element_by_css_selector('#contents.ytmusic-section-list-renderer')
 
     main_list = []
 
-#    if main.find_element_by_tag_name('picture').find_element_by_tag_name('img').get_attribute('src'):
-#
-#        main_list.append(
-#            {
-#                'main_thumb':main.find_element_by_tag_name(
-#                    'picture'
-#                ).find_element_by_tag_name(
-#                    'img'
-#                ).get_attribute('src')
-#            }
-#        )
+    source = main.find_elements_by_css_selector(
+        '#contents > ytmusic-immersive-carousel-shelf-renderer'
+    )
+    source += main.find_elements_by_css_selector(
+        '#contents > ytmusic-carousel-shelf-renderer'
+    )
 
-    source = main.find_elements_by_css_selector('#contents > ytmusic-immersive-carousel-shelf-renderer')
-    source += main.find_elements_by_css_selector('#contents > ytmusic-carousel-shelf-renderer')
+    # calling collection collected before
 
-#    when = datetime.today().strftime('%Y-%m-%d %H:%M')
-#    newcsv = open(f"./ym_data/{when}.csv", 'w+', encoding='utf-8')
-#
-#    for sou in source:
-#
-#        print(
-#            sou.find_element_by_tag_name('h2').get_attribute('aria-label')+" 이(가) 작성됨"
-#        )
-#
-#        csv.writer(newcsv).writerow([
-#            sou.find_element_by_tag_name('h2').get_attribute('aria-label')
-#        ])
-#
-#    newcsv.close()
+    with open('./ym_data/collection.csv', newline='') as data:
+        data_reader = csv.DictReader(data)
+        coll = [row['collection'] for row in data_reader]
 
-    for sou in source:
+    # crawling and make data
 
-#        main_list.append(
-#            {
-#                'collection': sou.find_element_by_tag_name('h2').get_attribute('aria-label'),
-#                'elements': [
-#                    {
-#                        'name':h.find_element_by_css_selector('.image-wrapper').get_attribute('title'),
-#                        'link':h.find_element_by_css_selector('.image-wrapper').get_attribute('href'),
-#                    }
-#                    for i in sou.find_elements_by_tag_name('ul')
-#                    for h in i.find_elements_by_css_selector('ytmusic-two-row-item-renderer')
-#                ]
-#            }
-#        )
+    for collection in [
+        {
+            'name': sou.find_element_by_tag_name(
+                'h2'
+            ).get_attribute(
+                'aria-label'
+            ),
+            'elements': [
+                {
+                    'name':h.find_element_by_css_selector(
+                        '.image-wrapper'
+                    ).get_attribute(
+                        'title'
+                    ),
+                    'link':h.find_element_by_css_selector(
+                        '.image-wrapper'
+                    ).get_attribute(
+                        'href'
+                    ),
+                }
+                for i in sou.find_elements_by_tag_name(
+                    'ul'
+                )
+                for h in i.find_elements_by_css_selector(
+                    'ytmusic-two-row-item-renderer'
+                )
+            ]
+        }
+        for sou in source
+    ]:
+        if collection['name'] not in os.listdir('./ym_data/collections'):
 
-        for i in sou.find_elements_by_tag_name('ul'):
-            for h in i.find_elements_by_css_selector('ytmusic-two-row-item-renderer'):
-                main_list.append(h.find_element_by_css_selector('.image-wrapper').get_attribute('href'))
+            coll.append(collection['name'])
 
-   for element in main_list:
-       for_list(element)
-       print(main_list[element]+'/'+len(main_list))
+            os.mkdir('./ym_data/collections/'+collection['name'])
 
+            print(f"새로운 컬렉션 디렉토리를 생성했습니다 : {collection['name']}")
+
+
+            os.chdir('./ym_data/collections/'+collection['name'])
+
+
+            newcsv = open("./playlists.csv", 'w+', encoding='utf-8')
+
+            csv.writer(
+                newcsv
+            ).writerow(
+                [
+                    'title',
+                    'thumbnail',
+                    'description',
+                    'type',
+                    'artist',
+                    'year',
+                ]
+            )
+
+            newcsv.close()
+
+            print('컬렉션 소속의 list 정보를 담는 csv 를 생성했습니다.')
+
+            i = 0
+            for element in collection['elements']:
+                for_list(element['link'],i)
+                i += 1
+
+            os.chdir('../../../')
+
+    # reset collection.csv
+
+    coll = list(set(coll))
+
+    newcsv = open("./ym_data/collection.csv", 'w+', encoding='utf-8')
+
+    csv.writer(
+        newcsv
+    ).writerow(
+        [
+            'collection'
+        ]
+    )
+
+    for newthings in coll:
+
+        csv.writer(
+            newcsv
+        ).writerow(
+            [
+                newthings
+            ]
+        )
+    print('컬렉션 목록을 갱신했습니다')
+    print('')
     print('끝!')
 
 def for_hotlist(target):
+
+    scroll_down(target)
 
     hotlist = driver.find_elements_by_css_selector('ytmusic-full-bleed-item-renderer')
 
     hot_list = [
         {
             'thumbnail':hot.find_element_by_css_selector('img.yt-img-shadow').get_attribute('src'),
-            'song_name':hot.find_element_by_css_selector('.title.ytmusic-full-bleed-item-renderer').text,
+            'title':hot.find_element_by_css_selector('.title.ytmusic-full-bleed-item-renderer').text,
             'artist':hot.find_element_by_css_selector(
                 '.subtitle.ytmusic-full-bleed-item-renderer'
             ).get_attribute('title')[
@@ -160,70 +214,116 @@ def for_hotlist(target):
         for hot in hotlist
     ]
 
-    print(hot_list)
+    newcsv = open(f"./ym_data/hotlist.csv", 'w+', encoding='utf-8')
+    csv.writer(
+        newcsv
+    ).writerow(
+        [
+            'thumbnail',
+            'title',
+            'artist',
+            'views',
+        ]
+    )
+    for hot in hot_list:
+        csv.writer(
+            newcsv
+        ).writerow(
+            [
+                hot['thumbnail'],
+                hot['title'],
+                hot['artist'],
+                hot['views'],
+            ]
+        )
 
-def for_list(target):
+def for_list(target, i):
 
     scroll_down(target)
 
     time.sleep(2)
 
-    list_header = driver.find_element_by_css_selector('ytmusic-detail-header-renderer')
+    if 0<len(driver.find_elements_by_css_selector('ytmusic-detail-header-renderer')):
+        list_header = driver.find_element_by_css_selector('ytmusic-detail-header-renderer')
+        list_sub    = list_header.find_element_by_class_name('subtitle')
 
-    list_thumb = list_header.find_element_by_tag_name('img').get_attribute('src')
-    list_title = list_header.find_element_by_class_name('title').text
-
-    print(list_title)
-
-
-    list_sub = list_header.find_element_by_class_name('subtitle')
-
-    type = list_sub.text[
-        :list_sub.text.find('•')-1
-    ]
-    artist = {
-        'name':list_sub.text[list_sub.text.find('•')+2:-7],
-        'link':''
-    }
-    if 0<len(
-        list_sub.find_elements_by_css_selector('a.yt-simple-endpoint')
-    ):
-        artist['link']=list_sub.find_element_by_css_selector(
-            'a.yt-simple-endpoint'
-        ).get_attribute('href')
-    year = list_sub.text[-4:]
-
-
-    list_ssub = list_header.find_element_by_class_name('second-subtitle').text
-
-    number = list_ssub[3:list_ssub.find('곡')]
-    fulltime = list_ssub[list_ssub.find('•')+2:]
-    length = {}
-    if '시간' in fulltime:
-        length['hour'] = fulltime[:fulltime.find('시')]
-    length['minute'] = fulltime[-3:-1]
-
-
-    description = list_header.find_element_by_css_selector('.description').text
-
+    if 0<len(driver.find_elements_by_css_selector('ytmusic-data-bound-header-renderer')):
+        list_header = driver.find_element_by_css_selector('ytmusic-data-bound-header-renderer')
+        list_sub    = list_header.find_element_by_class_name('stats')
 
     itemlist = driver.find_elements_by_css_selector('ytmusic-responsive-list-item-renderer')
 
+    # update playlists
+
+    newcsv = open(
+        "./playlists.csv",
+        'a',
+        encoding='utf-8'
+    )
+
+    csv.writer(
+        newcsv
+    ).writerow(
+        [
+            list_header.find_element_by_class_name('title').text,
+            list_header.find_element_by_tag_name('img').get_attribute('src'),
+            list_header.find_element_by_css_selector('.description').text,
+            list_sub.text[:list_sub.text.find('•')-1],
+            list_sub.text[ list_sub.text.find('•')+2:-7],
+            list_sub.text[-4:]
+        ]
+    )
+
+    newcsv.close()
+
+    # make itemlist csv
+
+    newcsv = open(
+        './'+str(i)+'.csv',
+        'w+',
+        encoding='utf-8'
+    )
+
+    csv.writer(
+        newcsv
+    ).writerow(
+        [
+            'title',
+            'thumbnail',
+            'artist',
+            'album',
+            'length',
+        ]
+    )
+
     for i in itemlist:
-        thumb = i.find_element_by_tag_name('img').get_attribute('src')
-        title = i.find_element_by_class_name('title').text
-        artist = i.find_elements_by_class_name('flex-column')[0].get_attribute('title')
-        album = i.find_elements_by_class_name('flex-column')[1].get_attribute('title')
-        length = i.find_element_by_class_name('fixed-column').text
+        csv.writer(
+            newcsv
+        ).writerow(
+            [
+                i.find_element_by_class_name('title').text,
+                i.find_element_by_tag_name('img').get_attribute('src'),
+                i.find_elements_by_class_name('flex-column')[0].get_attribute('title'),
+                i.find_elements_by_class_name('flex-column')[1].get_attribute('title'),
+                i.find_element_by_class_name('fixed-column').text,
+            ]
+        )
+
+    newcsv.close()
+
+    print(list_header.find_element_by_class_name('title').text+' 에 대한 csv 가 작성되었습니다.')
 
 def for_artist(target):
-    target = 'https://music.youtube.com/tasteprofile'
+    driver.get(target)
+    time.sleep(3)
+    print(driver.find_element_by_css_selector('.image.ytmusic-fullbleed-thumbnail-renderer').get_attribute('src'))
+    print(driver.find_element_by_css_selector('.title.ytmusic-immersive-header-renderer').text)
 
 #############################################################################################
 
 for_main('https://music.youtube.com')
 
-#for_hotlist('https://music.youtube.com/hotlist')
+#for_hotlist('https://music.youtube.com/hotlist') # 5/14
 
 #for_list('https://music.youtube.com/playlist?list=rdclak5uy_ln9xj1rqgmbltmvrztvhmg-vyvt594kyu') # 구글 DB에서 폐기함
 #for_list('https://music.youtube.com/playlist?list=PLWImZYQw4M8ePtdzPMzkeJtuzF9qVchBR')
@@ -231,5 +331,7 @@ for_main('https://music.youtube.com')
 
 #more_test('https://music.youtube.com/channel/UCa5qWh5TRLCVFkCO67_gOtw')
 #more_test('https://music.youtube.com/playlist?list=RDCLAK5uy_kx8KLdeTpmUxdsdetXKOkT07jEVp2LhDE')
+
+#for_artist('https://music.youtube.com/channel/UC0NqJ6MhRnkRaWAmBgyyjTA')
 
 driver.quit()
