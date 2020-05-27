@@ -1,0 +1,30 @@
+{
+  "title": "비 내리는 날:umbrella_with_rain_drops:️",
+  "sub_title": "비 오는 날에 어울리는 음악",
+  "item_list": [
+    {
+      "id": 23,
+      "category": "playlist",
+      "endpoint": "/playlist/",
+      "title": "비 오는 날 듣는 국내 인디",
+      "subtitle": "재생목록 • YouTube Music",
+      "thumbnail": "https://lh3.googleusercontent.com/qcJIsIRvVd-tHsOx8dxmxPaSbuM0JOZLIECzIG1tsV3bYoIGylPma8NYrlqb1VVuv0q6fkKZJw=w544-h544-l90-rj"
+    },
+    {
+      "id": 124,
+      "category": "artist",
+      "endpoint": "/artist/",
+      "title": "비 오는 날 듣는 국내 인디",
+      "subtitle": "재생목록 • YouTube Music",
+      "thumbnail": "https://lh3.googleusercontent.com/qcJIsIRvVd-tHsOx8dxmxPaSbuM0JOZLIECzIG1tsV3bYoIGylPma8NYrlqb1VVuv0q6fkKZJw=w544-h544-l90-rj"
+    },
+    {
+      "id": 77,
+      "category": "video",
+      "endpoint": "/video/",
+      "title": "비 오는 날 듣는 국내 인디",
+      "subtitle": "재생목록 • YouTube Music",
+      "thumbnail": "https://lh3.googleusercontent.com/qcJIsIRvVd-tHsOx8dxmxPaSbuM0JOZLIECzIG1tsV3bYoIGylPma8NYrlqb1VVuv0q6fkKZJw=w544-h544-l90-rj"
+    }
+  ]
+}
