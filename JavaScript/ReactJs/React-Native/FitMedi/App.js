@@ -11,12 +11,16 @@ export default class App extends Component {
       this.setState({loading: false});
     }, 3000);
   }
+
   render() {
-    return (
-      <>
-        <Survey />
-      </>
-    );
     return <>{this.state.loading ? <Loading /> : <Login />}</>;
+
+    /*
+        return (
+          <>
+            <Survey />
+          </>
+        );
+    */
   }
 }

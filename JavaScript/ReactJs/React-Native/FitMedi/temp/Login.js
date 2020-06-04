@@ -66,18 +66,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#4e5355',
   },
   topt: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
   },
   topct: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#35b3bc',
   },
   cont: {
     width: '85%',
-    height: '26%',
+    height: '25%',
     borderRadius: 30,
     borderColor: 'white',
     borderWidth: 1,
