@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   Alert,
   View,
   Text,
   StatusBar,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 
@@ -17,7 +14,7 @@ export default class Login extends Component {
       <>
         <StatusBar barStyle="light-content" />
         <View style={styles.container}>
-          <View style={styles.part}>
+          <View style={styles.top}>
             <Text style={styles.sample}>FM</Text>
             <Text style={styles.topt}>지금 회원가입하고</Text>
             <Text style={styles.topct}>
@@ -25,7 +22,7 @@ export default class Login extends Component {
               <Text style={styles.topt}>를 받아보세요!</Text>
             </Text>
           </View>
-          <View style={styles.part}>
+          <View style={styles.cnt}>
             {[
               {name: '카카오톡 로그인'},
               {name: '구글 로그인'},
@@ -47,10 +44,35 @@ export default class Login extends Component {
           </View>
           <View style={styles.btm}>
             <Text style={styles.btmt}>
-              로그인하시면 개인정보처리방침 및 이용약관
+              로그인하시면
+              <Text> </Text>
+              <Text
+                style={styles.under}
+                onPress={() => {
+                  Alert.alert('작업 중입니다.');
+                }}>
+                개인정보처리방침
+              </Text>
+              <Text> 및 </Text>
+              <Text
+                style={styles.under}
+                onPress={() => {
+                  Alert.alert('작업 중입니다.');
+                }}>
+                이용약관
+              </Text>
             </Text>
             <Text style={styles.btmt}>
-              그리고 저희의 더 나은 서비스 제공을 위한 연구정책에
+              그리고 저희의 더 나은 서비스 제공을 위한
+              <Text> </Text>
+              <Text
+                style={styles.under}
+                onPress={() => {
+                  Alert.alert('작업 중입니다.');
+                }}>
+                연구정책
+              </Text>
+              에
             </Text>
             <Text style={styles.btmt}>동의하는 것으로 간주합니다.</Text>
           </View>
@@ -65,6 +87,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#4e5355',
   },
+  top: {
+    flex: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   topt: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -76,12 +103,12 @@ const styles = StyleSheet.create({
     color: '#35b3bc',
   },
   cont: {
-    width: '85%',
-    height: '25%',
+    width: '83%',
+    height: '18%',
     borderRadius: 30,
     borderColor: 'white',
     borderWidth: 1,
-    margin: 4,
+    margin: 6,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -90,8 +117,8 @@ const styles = StyleSheet.create({
     fontSize: 23,
     fontWeight: 'bold',
   },
-  part: {
-    flex: 3,
+  cnt: {
+    flex: 6,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -103,6 +130,9 @@ const styles = StyleSheet.create({
   btmt: {
     justifyContent: 'center',
     color: 'white',
+  },
+  under: {
+    textDecorationLine: 'underline',
   },
   sample: {
     fontSize: 160,

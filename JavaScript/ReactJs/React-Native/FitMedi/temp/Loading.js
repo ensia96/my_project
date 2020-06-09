@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {StyleSheet, View, Text, StatusBar} from 'react-native';
 
 export default class Loading extends Component {
   render() {
@@ -14,7 +7,7 @@ export default class Loading extends Component {
       <>
         <StatusBar barStyle="light-content" />
         <View style={styles.container}>
-          <View style={styles.part}>
+          <View style={styles.top}>
             {[
               {name: '근골격계', style: styles.mainWhiteFont},
               {name: '운동관리', style: styles.mainWhiteFont},
@@ -23,7 +16,7 @@ export default class Loading extends Component {
               return <Text style={item.style}>{item.name}</Text>;
             })}
           </View>
-          <View style={styles.part}>
+          <View style={styles.btm}>
             <Text style={styles.sample}>FM</Text>
           </View>
         </View>
@@ -37,8 +30,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#4e5355',
   },
-  part: {
-    flex: 1,
+  top: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btm: {
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },

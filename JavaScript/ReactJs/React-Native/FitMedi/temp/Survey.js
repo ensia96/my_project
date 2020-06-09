@@ -1,15 +1,7 @@
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
-  Alert,
-  CheckBox,
-} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Alert} from 'react-native';
+
+import Active from './Active';
 
 export default class Survey extends Component {
   state = {
@@ -46,13 +38,14 @@ export default class Survey extends Component {
             })}
           </View>
           <View style={styles.btm}>
-            <TouchableOpacity>
-              <Text>다음으로</Text>
-            </TouchableOpacity>
-            <Text style={styles.btmt}>
-              로그인하시면 개인정보처리방침 및 이용약관
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <View style={styles.now} />
+              <View style={styles.all} />
+              <View style={styles.all} />
+              <View style={styles.all} />
+            </View>
           </View>
+          <Active />
         </View>
       </>
     );
@@ -101,11 +94,36 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   btm: {
-    flex: 2,
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  all: {
+    backgroundColor: '#e8e8e8',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    margin: 10,
+  },
+  now: {
+    backgroundColor: '#26c1c9',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    margin: 10,
+  },
+  next: {
+    width: '85%',
+    height: 40,
+    margin: 3,
+    borderRadius: 20,
+    backgroundColor: '#c5c5c5',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  btmt: {
-    justifyContent: 'center',
+  nextt: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });

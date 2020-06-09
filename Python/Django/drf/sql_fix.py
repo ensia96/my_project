@@ -11,15 +11,15 @@ os.environ.setdefault(
 
 django.setup()
 
-from product.models import Media
+from product.models import Series
 
-for i in Media.objects.filter(media_url__contains = 'primary.jpg'):
-    a = i.media_url.replace ('primary.jpg','hover.jpg')
-    b = i.product_id
-    Media.objects.create(
-        media_url = a,
-        product_id =b
-    )
+for i in Series.objects.filter(code__contains = '#'):#.values('code'):
+    i.code = i.code.replace ('#','')
+    i.save()
+#    Media.objects.create(
+#        media_url = a,
+#        product_id =b
+#    )
 
 #from user.models import User
 #
