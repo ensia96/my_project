@@ -23,7 +23,7 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Search />
+        <Routine />
       </>
     );
     /*
@@ -32,8 +32,8 @@ export default class App extends Component {
     <Main />
     <Survey />
     <Wating />
-    <Routine />
     <Description />
+    <Search />
     <Nav />
     <Active />
     return <>{this.state.done ? <Wating /> : <Survey />}</>;

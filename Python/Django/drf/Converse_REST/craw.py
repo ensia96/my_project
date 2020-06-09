@@ -12,9 +12,9 @@ def headless():
 
 
 # driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=headless())
-driver = webdriver.Chrome("/Users/ensia96/Documents/chromedriver")
+driver = webdriver.Chrome("chromedriver")
 
-link = ""
+link = "https://www.converse.co.kr/category/shoes"
 
 
 def scroll_down(target):  # 인자로 온 링크에 대해 스크롤다운
@@ -44,12 +44,12 @@ def for_products(target):
 
     time.sleep(5)
 
-    main = driver.find_element_by_css_selector("")
-    source = main.find_elements_by_css_selector()
-    source += main.find_elements_by_css_selector()
+#    main = driver.find_element_by_css_selector("")
+#    source = main.find_elements_by_css_selector()
+#    source += main.find_elements_by_css_selector()
+    print('haha')
 
 
 for_products(link)
-
 
 driver.quit()
