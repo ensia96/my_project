@@ -14,7 +14,7 @@ def headless():
 # driver = webdriver.Chrome('/Users/ensia96/Documents/chromedriver', options=headless())
 driver = webdriver.Chrome("chromedriver")
 
-link = "https://www.converse.co.kr/category/shoes"
+link = "https://www.converse.co.kr"
 
 
 def scroll_down(target):  # 인자로 온 링크에 대해 스크롤다운
@@ -39,17 +39,65 @@ def scroll_down(target):  # 인자로 온 링크에 대해 스크롤다운
         last_height = new_height
 
 
-def for_products(target):
-    scroll_down(target)
-
+def categories_groups(target):
+    driver.get(target)
     time.sleep(5)
 
-#    main = driver.find_element_by_css_selector("")
-#    source = main.find_elements_by_css_selector()
-#    source += main.find_elements_by_css_selector()
-    print('haha')
+    categories = driver.find_elements_by_class_name("anchor.level-1")
+    groups = driver.find_elements_by_class_name("anchor.level-2")
+
+    category_group = []
+
+    for category in categories:
+        if category.text:
+            if "link" not in category.get_attribute("class"):
+                cat_gro = {"category": category.text, "groups": []}
+                category.click()
+                time.sleep(2)
+                for group in groups:
+                    if group.text:
+                        cat_gro["groups"].append(
+                            {
+                                "name": group.text,
+                                "link": group.get_attribute("href").split("/")[-1],
+                            }
+                        )
+                category_group.append(cat_gro)
+            # else:
+            #     category_group.append(
+            #         {
+            #             "category": category.text,
+            #             "link": category.get_attribute("href").split("/")[-1],
+            #         }
+            #     )
+
+    print(category_group)
+
+    for element in category_group:
+        for group in element["groups"]:
+            products(link + "/category/" + group["link"])
+            time.sleep(2)
 
 
-for_products(link)
+def products(target):
+    driver.get(target)
+    if driver.find_elements_by_xpath(
+        "/html/body/section/main/section/div[1]/div[2]/div[1]/div[1]"
+    ):
+        print(
+            driver.find_elements_by_xpath(
+                "/html/body/section/main/section/div[1]/div[2]/div[1]/div[1]"
+            )[0]
+            .find_element_by_tag_name("img")
+            .get_attribute("src")
+        )
+    # scroll_down(target)
+    time.sleep(2)
+
+
+categories_groups(link)
+
+# print(os.getcwd())
+# print(os.listdir())
 
 driver.quit()

@@ -1,0 +1,34 @@
+[
+  {
+    "category": "신발",
+    "groups": [
+      { "name": "전체보기", "link": "shoes" },
+      { "name": "베스트셀러", "link": "bestseller" },
+      { "name": "척테일러 올스타", "link": "chucktaylorallstar" },
+      { "name": "척 70", "link": "chuck70" },
+      { "name": "원스타", "link": "onestar" },
+      { "name": "잭퍼셀", "link": "jackpurcell" },
+      { "name": "프로레더", "link": "proleather" },
+      { "name": "회원전용", "link": "membershop-shoes" }
+    ]
+  },
+  {
+    "category": "의류",
+    "groups": [
+      { "name": "전체보기", "link": "apparel-accessory" },
+      { "name": "상의", "link": "tops" },
+      { "name": "하의", "link": "pants" },
+      { "name": "용품", "link": "accessory" }
+    ]
+  },
+  {
+    "category": "아동",
+    "groups": [
+      { "name": "전체보기", "link": "kids-shoes" },
+      { "name": "유아 (165mm이하)", "link": "baby-shoes" },
+      { "name": "어린이 (215mm이하)", "link": "kids" }
+    ]
+  },
+  { "category": "런칭캘린더", "link": "launch-calendar" },
+  { "category": "회원전용", "link": "membershop-shoes" }
+]
