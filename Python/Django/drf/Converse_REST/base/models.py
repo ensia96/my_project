@@ -6,4 +6,3 @@ class Media(models.Model):
 
     class Meta:
         db_table = "medias"
-

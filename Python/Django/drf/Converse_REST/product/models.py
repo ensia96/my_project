@@ -1,41 +1,42 @@
 from django.db import models
+from base.models import Media
 
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
     link = models.CharField(max_length=30)
     thumbnail = models.ForeignKey("Media", on_delete=models.SET_NULL, null=True)
+    super = models.ForeignKey("self", on_delete=models.CASCADE)
+    product = models.ManyToManyField(
+        "Product", through="CategoryProduct", through_fields=("category", "product")
+    )
 
     class Meta:
         db_table = "categories"
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=30)
-    link = models.CharField(max_length=30)
-    thumbnail = models.ForeignKey("Media", on_delete=models.SET_NULL, null=True)
+class CategoryProduct(models.Model):
     category = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey("Product", on_delete=models.SET_NULL, null=True)
 
     class Meta:
-        db_table = "categories"
+        db_table = "categories_products"
 
 
 class Series(models.Model):
-    name = models.CharField(max_length=30)
-    summary = models.CharField(max_length=30)
+    number = models.CharField(max_length=30)
+    product = models.ForeignKey("Product", on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = "series"
 
 
 class Product(models.Model):
-    code = models.CharField(max_length=30)
-    name = models.CharField(max_length=30)
+    code = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
     price = models.IntegerField()
     colour = models.CharField(max_length=30)
-    category = models.ForeignKey("Category", on_delete=models.SET_NULL, null=True)
-    group = models.ForeignKey("Group", on_delete=models.SET_NULL, null=True)
-    series = models.ForeignKey("Series", on_delete=models.SET_NULL, null=True)
+    summary = models.CharField(max_length=200)
     card = models.ForeignKey("Media", on_delete=models.SET_NULL, null=True)
     hover = models.ForeignKey("Media", on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey("Type", on_delete=models.SET_NULL, null=True)
