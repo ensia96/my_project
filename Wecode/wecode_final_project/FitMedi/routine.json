@@ -1,0 +1,37 @@
+{
+  "id": 1,
+  "name": "맞춤형 추천 루틴",
+  "summary": "한줄 18pt bold 기준 최대 16글자까지",
+  "exercises": [
+    {
+      "name": "운동명사오육칠팔구십일이삼 1",
+      "sets": 10,
+      "difficulty": "초급",
+      "part": "어깨"
+    },
+    {
+      "name": "운동명사오육칠팔구십일이삼 2",
+      "sets": 15,
+      "difficulty": "중급",
+      "part": "가슴"
+    },
+    {
+      "name": "운동명사오육칠팔구십일이삼 3",
+      "sets": 10,
+      "difficulty": "고급",
+      "part": "등"
+    },
+    {
+      "name": "운동명사오육칠팔구십일이삼 4",
+      "sets": 10,
+      "difficulty": "중급",
+      "part": "하체"
+    },
+    {
+      "name": "운동명사오육칠팔구십일이삼 5",
+      "sets": 10,
+      "difficulty": "중급",
+      "part": "전신"
+    }
+  ]
+}

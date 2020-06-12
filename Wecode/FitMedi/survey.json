@@ -1,0 +1,31 @@
+{
+  "id": 1,
+  "question": "운동 목적을 알려줄래요?",
+  "duplicate selection": true,
+  "answers": [
+    {
+      "answer": "근육량 증가",
+      "part_id": 1
+    },
+    {
+      "answer": "다이어트",
+      "part_id": 1
+    },
+    {
+      "answer": "근력증가 ( 스트렝스 )",
+      "part_id": 1
+    },
+    {
+      "answer": "몸매 관리",
+      "part_id": 1
+    },
+    {
+      "answer": "홈 트레이닝 / 맨몸",
+      "part_id": 1
+    },
+    {
+      "answer": "질환 / 통증 관리",
+      "part_id": 1
+    }
+  ]
+}
