@@ -23,12 +23,12 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Routine />
+        <Login />
       </>
     );
     /*
+    <Routine />
     <Loading />
-    <Login />
     <Main />
     <Survey />
     <Wating />

@@ -1,8 +1,8 @@
-import os
+import os, my_settings
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = "%s=tt=e=zzr$*cq_1a)$qp8$hi1ahg4i0&+x!-y!x4s32+_%ya"
+SECRET_KEY = my_settings.SECRET["key"]
 
 DEBUG = True
 
@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "user",
     "survey",
-    "service",
+    "exercise",
 ]
 
 MIDDLEWARE = [
@@ -52,12 +52,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "FitMedi.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
+DATABASES = my_settings.DATABASE
 
 AUTH_PASSWORD_VALIDATORS = [
     {
