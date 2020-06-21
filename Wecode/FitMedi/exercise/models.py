@@ -4,7 +4,9 @@ from django.db import models
 class Routine(models.Model):
     name = models.CharField(max_length=50)
     summary = models.CharField(max_length=100)
-    exercise = models.ManyToManyField("Exercise", through="RoutineExercise")
+    exercise = models.ManyToManyField(
+        "Exercise", related_name="includes", through="RoutineExercise"
+    )
 
     class Meta:
         db_table = "routines"
@@ -25,7 +27,9 @@ class Exercise(models.Model):
     difficulty = models.ForeignKey("Difficulty", on_delete=models.SET_NULL, null=True)
     part = models.ForeignKey("Part", on_delete=models.SET_NULL, null=True)
     type = models.ForeignKey("Type", on_delete=models.SET_NULL, null=True)
-    routine = models.ManyToManyField("Routine", through="RoutineExercise")
+    routine = models.ManyToManyField(
+        "Routine", related_name="included", through="RoutineExercise"
+    )
 
     class Meta:
         db_table = "exercises"

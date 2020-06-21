@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -9,10 +9,10 @@ import {
   Alert,
 } from 'react-native';
 
-import Active from './Active';
+import Active from '../components/Active';
 
-export default class Main extends Component {
-  json = {
+export default function Main() {
+  const json = {
     name: '하하호호 즐거운 운동',
     tip:
       '운동 스텝에 대한 설명이 들어갈 에정입니다. 설명이 어느정도의 분량일지 잘 모르는 상태입니다.운동 스텝에 대한 설명이 들어갈 에정입니다. 설명이 어느정도의 분량일지 잘 모르는 상태입니다.운동 스텝에 대한 설명이 들어갈 에정입니다. 설명이 어느정도의 분량일지 잘 모르는 상태입니다.',
@@ -22,44 +22,42 @@ export default class Main extends Component {
       '운동 스텝에 대한 설명이 들어갈 에정입니다. 설명이 어느정도의 cvbcvb분량일지 잘 모르는 상태입니다.운동 스텝에 대한 설명이 들어갈 에정입니다. 설명이 어느정도의 분량일지 잘 모르는 상태입니다.운동 스텝에 대한 설명이 들어갈 에정입니다. 설명이 어느정도의 분량일지 잘 모르는 상태입니다.',
     ],
   };
-  render() {
-    return (
-      <>
-        <View style={styles.container}>
-          <View style={styles.top}>
-            <View style={styles.titlewrapper}>
-              <TouchableOpacity
-                onPress={() => {
-                  Alert.alert('뒤로 돌아가기!');
-                }}>
-                <Text style={styles.sample}>←</Text>
-              </TouchableOpacity>
-              <Text style={styles.title}>{this.json.name}</Text>
-            </View>
+  return (
+    <>
+      <View style={styles.container}>
+        <View style={styles.top}>
+          <View style={styles.titlewrapper}>
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert('뒤로 돌아가기!');
+              }}>
+              <Text style={styles.sample}>←</Text>
+            </TouchableOpacity>
+            <Text style={styles.title}>{json.name}</Text>
           </View>
-          <View style={styles.center}>
-            <ScrollView>
-              <View style={styles.content}>
-                <Text style={styles.ctip}>Tips</Text>
-                <Text style={styles.citems}>{this.json.tip}</Text>
-              </View>
-              {this.json.steps.map((items, id) => {
-                return (
-                  <>
-                    <View style={styles.content}>
-                      <Text style={styles.ctitle}>Step {id + 1}</Text>
-                      <Text style={styles.citems}>{items}</Text>
-                    </View>
-                  </>
-                );
-              })}
-            </ScrollView>
-          </View>
-          <Active />
         </View>
-      </>
-    );
-  }
+        <View style={styles.center}>
+          <ScrollView>
+            <View style={styles.content}>
+              <Text style={styles.ctip}>Tips</Text>
+              <Text style={styles.citems}>{json.tip}</Text>
+            </View>
+            {json.steps.map((items, id) => {
+              return (
+                <>
+                  <View style={styles.content}>
+                    <Text style={styles.ctitle}>Step {id + 1}</Text>
+                    <Text style={styles.citems}>{items}</Text>
+                  </View>
+                </>
+              );
+            })}
+          </ScrollView>
+        </View>
+        <Active />
+      </View>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
