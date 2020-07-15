@@ -11,13 +11,13 @@ import Description from './src/pages/Description';
 export default function App() {
   return (
     <>
-      <Description />
+      <Login />
     </>
   );
   /*
   <Loading />
-  <Login />
   <Main />
+  <Description />
   <Wating />
   <Routine />
   <Survey />

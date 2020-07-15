@@ -1,0 +1,134 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700";
+@font-face {
+  font-family: "NS";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansCJKkr-Regular_subset.eot?") format("eot"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansCJKkr-Regular_subset.woff") format("woff"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansKR-Regular.ttf") format("truetype"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansKR-Regular.svg#NotoSansKR-Regular") format("svg");
+}
+@font-face {
+  font-family: "NSM";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansCJKkr-Medium_subset.eot?") format("eot"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansCJKkr-Medium_subset.woff") format("woff"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansKR-Medium.ttf") format("truetype"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansKR-Medium.svg#NotoSansKR-Medium") format("svg");
+}
+@font-face {
+  font-family: "NSB";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansCJKkr-Bold_subset.eot?") format("eot"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansCJKkr-Bold_subset.woff") format("woff"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansKR-Bold.ttf") format("truetype"), url("https://d1hk7gw6lgygff.cloudfront.net/fonts/NotoSansKR-Bold.svg#NotoSansKR-Bold") format("svg");
+}
+body {
+  height: 100vh;
+}
+
+.certificate {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+}
+
+body.certificate {
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+  color: #333;
+  font-size: 1.2rem;
+  font-family: "NS";
+}
+body.certificate .wrap {
+  width: 900px;
+  margin: 0 auto;
+  background: url("../images/bg.png") no-repeat;
+  text-align: center;
+}
+body.certificate .slogan {
+  font-family: "Dancing Script", cursive;
+  text-align: center;
+  font-size: 3.2rem;
+  margin: 200px auto 0 auto;
+}
+body.certificate h1 {
+  background: url("../images/ribbon.png") left top no-repeat;
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 20px auto 0 auto;
+  padding-left: 50px;
+  height: 50px;
+  line-height: 50px;
+  width: 60%;
+}
+body.certificate h1 .h1_inner {
+  background: url("../images/ribbon.png") right top no-repeat;
+  padding-right: 50px;
+}
+body.certificate .period {
+  margin-top: 10px;
+}
+body.certificate .name {
+  font-size: 3rem;
+  font-family: "NSB";
+  font-weight: bold;
+  margin: 100px 0 140px 0;
+}
+body.certificate .text {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}
+body.certificate .date {
+  margin-top: 30px;
+}
+body.certificate .img {
+  margin: 85px auto;
+  width: 109px;
+}
+body.certificate .img img {
+  width: 100%;
+}
+
+@media only screen and (max-width: 940px) {
+  body.certificate .wrap {
+    background-image: none;
+    background-color: #fff;
+    width: 90%;
+    margin: 50px auto;
+  }
+  body.certificate .wrap .inner {
+    border: 2px solid #999;
+    margin: 20px;
+  }
+  body.certificate .wrap .slogan {
+    font-size: 2.6rem;
+    margin-top: 90px;
+  }
+  body.certificate .wrap h1 {
+    font-size: 1.2rem;
+  }
+  body.certificate .wrap .name {
+    margin: 50px 0;
+  }
+  body.certificate .wrap .text {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 375px) {
+  body.certificate .wrap .inner {
+    border: 1px solid #999;
+    margin: 10px;
+  }
+  body.certificate .wrap .slogan {
+    padding: 0 20px;
+    margin-top: 30px;
+  }
+  body.certificate .wrap h1 {
+    width: 70%;
+  }
+  body.certificate .wrap .text,
+body.certificate .wrap .date {
+    font-size: 1rem;
+  }
+  body.certificate .wrap .img {
+    width: 30%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
