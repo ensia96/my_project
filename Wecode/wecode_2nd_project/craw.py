@@ -49,7 +49,7 @@ def login(target):
     return True
 
 def for_main(target):
-    login(target)
+    # login(target)
     scroll_down(target)
 
     time.sleep(5)
