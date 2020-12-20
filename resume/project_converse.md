@@ -40,6 +40,7 @@ WeCode
 - 발표자료 제작 및 발표
 
 관련 자료
+Youtube 데모 ( https://www.youtube.com/watch?v=5c2VEhlTCJc&feature=emb_logo )
 GitHub 저장소 ( https://github.com/wecode-bootcamp-korea/Converse-backend )
 Trello ( https://trello.com/b/YTbQCexc )
 Aquery ( https://aquerytool.com/aquerymain/index/?rurl=88c304a0-1be6-4e6a-bdf8-4ef49c98dd36 | 비밀번호 : k4payo )
