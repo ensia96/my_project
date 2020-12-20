@@ -14,7 +14,7 @@
 프로젝트에 대한 소개와 본인이 수행한 역할을 상세히 작성해주세요.
 -----------------------------------------------------------------------------------------------------------------------
 
-회사에서 제안받은 스터디를 병행한 토이 프로젝트입니다.
+회사에서 제안받은 스터디를 병행한 미완성 토이 프로젝트입니다.
 
 참가 인원
 프론트엔드 : 2명
@@ -26,6 +26,8 @@
 - 클라이언트 : React-Native
 
 관련 자료
+프론트엔드 GitHub 저장소 ( https://github.com/ensia96/FitMedi-Frontend )
+백엔드 GitHub 저장소 ( https://github.com/ensia96/FitMedi-Backend )
 정리 자료 ( https://docs.google.com/presentation/d/157ndE3DUy7TUcfXOChQ8IT6fW6qM-UefxeqmtB3nNMM/edit )
 Aquery ( https://aquerytool.com:443/aquerymain/index/?rurl=91b1b158-0979-458f-addc-e1e18559b8be | 비밀번호 : e5svzo )
 
@@ -38,7 +40,7 @@ Aquery ( https://aquerytool.com:443/aquerymain/index/?rurl=91b1b158-0979-458f-ad
 - 서버 기능요소 구현 ( 로그인 기능 )
 - 로컬 환경 기능 동작 점검
 
-배운 점
+깨달은 점
 - 비 개발자분들과 소통할 땐, 추상화가 꼭 필요하다.
 - 사람은 방향성과 목적이 뚜렷해야 한다.
 - 어떤 상황에서도 할 수 있는 일이 있다.
