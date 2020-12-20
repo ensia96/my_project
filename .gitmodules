@@ -1,3 +1,6 @@
 [submodule "ensia96"]
 	path = ensia96
 	url = https://github.com/ensia96/ensia96
+[submodule "GuideToLife"]
+	path = GuideToLife
+	url = https://github.com/ensia96/GuideToLife
