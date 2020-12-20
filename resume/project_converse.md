@@ -15,9 +15,11 @@ WeCode
 
 구성 기술
 - 서버 : AWS EC2 ( Django )
+- 보안 : Bcrypt, JWT
 - 데이터베이스 : AWS RDS ( MySQL )
 - 정보 수집 : BeautifulSoup, Selenium ( Python )
 - 클라이언트 : React
+- UI 라이브러리 : Styled Component
 
 담당 업무
 - 정보 수집 ( 이미지 URL, 제품 정보 등 )
@@ -30,18 +32,25 @@ WeCode
 - AWS EC2 배포
 - 발표자료 제작 및 발표
 
-배운 점
-- 모든 일이 예상대로 흘러가진 않는다.
-- 멘탈 관리가 중요하다.
-- 컨버스 개발자들은 주말에도 일을 한다.
-- 내가 맞다고 생각하는 것이 항상 옳진 않다.
+배운 것
+- Python 의 os 객체를 이용하면 Shell 환경을 제어할 수 있다.
+- Python 의 open 메소드를 이용해 파일 정보를 읽을 수 있다.
+- Python 의 with 구문의 실행 환경은 indent 를 벗어나면 없어진다.
+- Python 의 csv 객체를 활용하여, csv 파일의 내용을 Dictionary 처럼 다룰 수 있다.
+- Selenium 의 webdriver 객체를 이용하면, browser 에서 스크립트 명령을 실행할 수 있다.
+- CORS 설정 없인 서버 앱을 API 로 활용할 수 없다.
+- Bcrypt 로 암호화된 비밀번호는 그 누구도 알 수 없다.
+- HTTP 통신의 Header, Body 외에도 URL Parameter 로도 정보를 받을 수 있다.
+- 구현할 기능보다 다루는 정보에 집중해야한다. ( 모델링 진짜 중요 )
+- 데이터베이스에서 Character Set 을 지정하지 않으면 문자가 깨진다.
+- 다수의 정보를 호출할 때 Join 을 활용하지 않으면, 매번 SQL 요청을 해야한다.
+- Dump 를 통해 생성된 sql 파일엔 마이그레이션용 SQL 구문들이 저장되어있다.
+
+깨달은 점
 - 소통이 잘 되는 만큼, 업무가 수월해진다.
 - 잔머리를 써서 한 일은, 큰 문제와 함께 돌아온다.
 - 명세를 관리하는 일은 손이 꽤 많이 간다.
-- 구현할 기능보다 다루는 정보에 집중해야한다. ( 모델링 진짜 중요!! )
 - 데이터베이스는 창고, 서버는 유통업체, 클라이언트는 소매상과 비슷하다.
-- 밤을 새서 만든 발표 자료는 그렇게 멋있지 않다.
-- 여러 사람 앞에서 제한된 시간 내에 발표하는 것은 매우 쉽지 않다.
 
 관련 자료
 GitHub 저장소 ( https://github.com/wecode-bootcamp-korea/Converse-backend )
@@ -64,7 +73,3 @@ Aquery ( https://aquerytool.com/aquerymain/index/?rurl=88c304a0-1be6-4e6a-bdf8-4
 - 배포 : Docker
 - 클라이언트 : React
 - UI 라이브러리 : Semantic-UI, Material-UI
-
-담당 업무 ( * 표시는 팀 단위로 진행 )
-
-- 노력과 시간을 쏟으면, 백엔드 개발자도 스타일링이 가능하다.
