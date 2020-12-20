@@ -1,5 +1,4 @@
 안녕하세요 !
-
 아름다운 코드를 추구하고, 배움과 소통을 사랑하는 백엔드 개발자, 최호준입니다 !
 
 제 특징은
@@ -16,7 +15,7 @@
 - 더 이상 더할 것이 없는 코드가 아닌, 더 이상 뺄 것이 없는 코드를 작성하고자 노력합니다.
 
 더 알아보기
-- Blog with Notion ( https://www.notion.so/3c41973085294a0fa376c9eea277cf91 )
+- Notion ( https://www.notion.so/3c41973085294a0fa376c9eea277cf91 )
 - GitHub ( https://github.com/ensia96 )
 - LinkedIn ( https://www.linkedin.com/in/ensia96/ )
 - Rocket Punch ( https://www.rocketpunch.com/@ensia96 )
