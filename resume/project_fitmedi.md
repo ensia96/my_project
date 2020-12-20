@@ -1,10 +1,17 @@
+프로젝트 명
 근골격계 관련 앱 개발
+시작일
 2020-05-23
+종료일
 2020-06-18
+프로젝트 유형
 사내 프로젝트
+소속회사명
 피트메디
+주사용기술
 프론트엔드 ( React-Native ), 백엔드 ( Django, MySQL )
 
+프로젝트에 대한 소개와 본인이 수행한 역할을 상세히 작성해주세요.
 -----------------------------------------------------------------------------------------------------------------------
 
 회사에서 제안받은 스터디를 병행한 토이 프로젝트입니다.
@@ -17,6 +24,10 @@
 - 서버 : Django
 - 데이터베이스 : MySQL
 - 클라이언트 : React-Native
+
+관련 자료
+정리 자료 ( https://docs.google.com/presentation/d/157ndE3DUy7TUcfXOChQ8IT6fW6qM-UefxeqmtB3nNMM/edit )
+Aquery ( https://aquerytool.com:443/aquerymain/index/?rurl=91b1b158-0979-458f-addc-e1e18559b8be | 비밀번호 : e5svzo )
 
 담당 업무
 - 회사/팀 간 소통 주도
@@ -34,9 +45,5 @@
 - 개발 뿐 아니라, 기획 관련 제안도 할 줄 알아야한다.
 - 간단한 작업도 이력을 남기는 것이 중요하다.
 - 주어진 기한 내에 목표를 달성하는 것이 가장 중요하다.
-
-관련 자료
-정리 자료 ( https://docs.google.com/presentation/d/157ndE3DUy7TUcfXOChQ8IT6fW6qM-UefxeqmtB3nNMM/edit )
-Aquery ( https://aquerytool.com:443/aquerymain/index/?rurl=91b1b158-0979-458f-addc-e1e18559b8be | 비밀번호 : e5svzo )
 
 -----------------------------------------------------------------------------------------------------------------------

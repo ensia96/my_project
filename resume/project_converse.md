@@ -1,10 +1,17 @@
+프로젝트 명
 Converse 공식 페이지 클론 프로젝트
+시작일
 2020-04-20
+종료일
 2020-05-01
+프로젝트 유형
 기타
+소속회사명
 WeCode
+주사용기술
 프론트엔드 ( React ), 백엔드 ( Django, MySQL ), 인프라 ( AWS )
 
+프로젝트에 대한 소개와 본인이 수행한 역할을 상세히 작성해주세요.
 -----------------------------------------------------------------------------------------------------------------------
 
 코딩 부트캠프 위코드에서 진행한 1차 팀 프로젝트입니다.
@@ -32,6 +39,12 @@ WeCode
 - AWS EC2 배포
 - 발표자료 제작 및 발표
 
+관련 자료
+GitHub 저장소 ( https://github.com/wecode-bootcamp-korea/Converse-backend )
+Trello ( https://trello.com/b/YTbQCexc )
+Aquery ( https://aquerytool.com/aquerymain/index/?rurl=88c304a0-1be6-4e6a-bdf8-4ef49c98dd36 | 비밀번호 : k4payo )
+발표 자료 ( https://docs.google.com/presentation/d/1Ii-vUkXqbj7DNoLkq8jW7tsfYHLUnxEnRuBR-WmUpG0/edit?usp=sharing )
+
 배운 것
 - Python 의 os 객체를 이용하면 Shell 환경을 제어할 수 있다.
 - Python 의 open 메소드를 이용해 파일 정보를 읽을 수 있다.
@@ -51,12 +64,6 @@ WeCode
 - 잔머리를 써서 한 일은, 큰 문제와 함께 돌아온다.
 - 명세를 관리하는 일은 손이 꽤 많이 간다.
 - 데이터베이스는 창고, 서버는 유통업체, 클라이언트는 소매상과 비슷하다.
-
-관련 자료
-GitHub 저장소 ( https://github.com/wecode-bootcamp-korea/Converse-backend )
-Trello ( https://trello.com/b/YTbQCexc )
-Aquery ( https://aquerytool.com/aquerymain/index/?rurl=88c304a0-1be6-4e6a-bdf8-4ef49c98dd36 | 비밀번호 : k4payo )
-발표 자료 ( https://docs.google.com/presentation/d/1Ii-vUkXqbj7DNoLkq8jW7tsfYHLUnxEnRuBR-WmUpG0/edit?usp=sharing )
 
 -----------------------------------------------------------------------------------------------------------------------
 

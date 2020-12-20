@@ -1,10 +1,17 @@
+프로젝트 명
 Youtube Music 서비스 클론 프로젝트
+시작일
 2020-05-11
+종료일
 2020-05-22
+프로젝트 유형
 기타
+소속회사명
 WeCode
+주사용기술
 프론트엔드 ( React ), 백엔드 ( Django, MySQL ), 인프라 ( AWS, Docker )
 
+프로젝트에 대한 소개와 본인이 수행한 역할을 상세히 작성해주세요.
 -----------------------------------------------------------------------------------------------------------------------
 
 코딩 부트캠프 위코드에서 진행한 2차 팀 프로젝트입니다.
@@ -32,6 +39,12 @@ WeCode
 - AWS EC2 배포 => Docker 기반 배포
 - 발표자료 제작 및 발표
 
+관련 자료
+GitHub 저장소 ( https://github.com/wecode-bootcamp-korea/YoutubeMuzic-backend )
+Trello ( https://trello.com/b/Gwa08tmi )
+Aquery ( https://aquerytool.com/aquerymain/index/?rurl=7a682ed1-5f50-4743-82c3-438992121a5f | 비밀번호 : h2awcy )
+발표 자료 ( https://docs.google.com/presentation/d/1gDzJ6t_EijS7fAEzGdNLfVy-cs6K9yk1_LCBMW2OiJ0/edit?usp=sharing )
+
 배운 것
 - Python 의 Dictionary 와 JSON 은 코드 상으로는 같은 형태를 띄지만, 종류가 다르다.
 - Django 의 get_or_create 메소드는 정보 객체와 생성 여부를 반환한다.
@@ -52,11 +65,5 @@ WeCode
 - Docker 로 배포하는 것은 신세계다.
 - 발표자료에 유머를 넣는 것은 쉽지 않다.
 - 유머를 발표에 녹여내는 것 역시 쉽지 않다.
-
-관련 자료
-GitHub 저장소 ( https://github.com/wecode-bootcamp-korea/YoutubeMuzic-backend )
-Trello ( https://trello.com/b/Gwa08tmi )
-Aquery ( https://aquerytool.com/aquerymain/index/?rurl=7a682ed1-5f50-4743-82c3-438992121a5f | 비밀번호 : h2awcy )
-발표 자료 ( https://docs.google.com/presentation/d/1gDzJ6t_EijS7fAEzGdNLfVy-cs6K9yk1_LCBMW2OiJ0/edit?usp=sharing )
 
 -----------------------------------------------------------------------------------------------------------------------
