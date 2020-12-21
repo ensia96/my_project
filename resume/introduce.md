@@ -19,4 +19,3 @@
 - LinkedIn : https://www.linkedin.com/in/ensia96
 - Rocket Punch : https://www.rocketpunch.com/@ensia96
 - FaceBook : https://www.facebook.com/profile.php?id=100005786230677
-- Instagram : https://www.instagram.com/ensia96
