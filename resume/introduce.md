@@ -14,7 +14,7 @@
 - 의도가 분명하고, 능동적인 코드를 작성하고자 노력합니다.
 
 더 알아보기
-- Notion : https://www.notion.so/3c41973085294a0fa376c9eea277cf91
+- Notion : https://www.notion.so/ensia96/cf76845324d74e10a34aa31c91a8c59a
 - GitHub : https://github.com/ensia96
 - LinkedIn : https://www.linkedin.com/in/ensia96
 - Rocket Punch : https://www.rocketpunch.com/@ensia96
