@@ -80,12 +80,12 @@ map <A-f> :Ag<cr>
 
 "Move between windows => Ctrl + h, j, k, l
 
+" Select word => Alt + g
+map <silent> <A-g> <Plug>(coc-range-select)
+
 "Create window => Alt + d, Alt + Shift + d
 map <A-d> :wincmd v<cr>
 map <A-S-d> :wincmd s<cr>
-
-"Close window => Alt + w
-map <A-w> :wincmd c<cr>
 
 "Move window to end => Alt + h, j, k, l
 map <A-h> :wincmd H<cr>
@@ -96,8 +96,8 @@ map <A-l> :wincmd L<cr>
 "Save & Quit => Alt + Enter
 map <A-CR> :wq<cr> 
 
-"Quit => Alt + \
-map <A-\> :q<cr> 
+"Quit => Alt + w
+map <A-w> :q<cr> 
 
 "Save => Enter
 map <CR> :w<cr> 
@@ -112,10 +112,15 @@ map <A-/> <plug>NERDCommenterToggle
 map <A-]> >>
 map <A-[> <<
 
-" => Alt + 
 "Fold codes => Alt + ', Alt + Shift + '
 map <A-'> zf
 map <A-"> zo
+
+" Manage coc extensions => space + e
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+
+" Show coc commands => space + c
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 "Autostart NERDTree
 autocmd VimEnter * NERDTree
@@ -133,6 +138,9 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 xmap ga <Plug>(EasyAlign)
 "Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+"Not to create swap files
+set nobackup
 
 set laststatus=2                          " Enables the status line at the bottom of Vim
 let g:git_branch_status_head_current=1    " Display only the current branch
@@ -392,9 +400,6 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -411,17 +416,17 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Using CocList
 " Show all diagnostics
 "nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Manage coc extensions => space + e
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show coc commands => space + c
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>l
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>l
