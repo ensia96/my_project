@@ -4,3 +4,6 @@
 [submodule "GuideToLife"]
 	path = GuideToLife
 	url = https://github.com/ensia96/GuideToLife
+[submodule "ensia96.github.io"]
+	path = ensia96.github.io
+	url = https://github.com/ensia96/ensia96.github.io.git
