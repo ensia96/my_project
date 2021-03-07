@@ -50,6 +50,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Float terminal
 Plug 'voldikss/vim-floaterm'
 
+" Easy align
+Plug 'junegunn/vim-easy-align'
+
 " Initialize plugin system
 call plug#end()
 
@@ -58,6 +61,11 @@ inoremap jk <ESC>
 " Open/Hide float terminal => Alt + t
 map <A-t> :FloatermToggle<cr>
 tnoremap <A-t> <C-\><C-n>:FloatermHide!<cr>
+
+nnoremap <silent> <space>h :FloatermPrev<cr>
+nnoremap <silent> <space>[ :FloatermNew<cr>
+nnoremap <silent> <space>] :FloatermKill<cr>
+nnoremap <silent> <space>l :FloatermNext<cr>
 
 " Visual mode in float terminal => Alt + w
 tnoremap <A-w> <C-\><C-n>
