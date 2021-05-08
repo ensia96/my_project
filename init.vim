@@ -56,8 +56,6 @@ Plug 'junegunn/vim-easy-align'
 " Initialize plugin system
 call plug#end()
 
-inoremap jk <ESC>
-
 " Open/Hide float terminal => Alt + t
 map <A-t> :FloatermToggle<cr>
 tnoremap <A-t> <C-\><C-n>:FloatermHide!<cr>
@@ -175,7 +173,7 @@ let g:NERDTreeIgnore = ['^node_modules$','\.pyc$', '^__pycache__$', '\~$']
 let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.str(), ':~'):''}"
 
 " Vim Theme set-up => https://github.com/vim-airline/vim-airline-themes/tree/master/autoload/airline/themes
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme = 'base16_gruvbox_dark_hard'
 
 function! AccentDemo()
    let keys = ['춤','추','는','망','고']
@@ -231,6 +229,7 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
+language en_US
 
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
