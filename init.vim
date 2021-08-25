@@ -1,5 +1,14 @@
+" ordinary neovim
+" plugins
+" let need_to_install_plugins = 0
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"     let need_to_install_plugins = 1
+" endif
+
 " Specify a directory for plugins
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -27,7 +36,7 @@ Plug 'jparise/vim-graphql'
 
 " Utility for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " about coc
-Plug 'scrooloose/nerdtree' " about directory tree
+Plug 'preservim/nerdtree' " about directory tree
 Plug 'jiangmiao/auto-pairs' " about auto pair
 Plug 'scrooloose/nerdcommenter' " about comment
 Plug 'terryma/vim-multiple-cursors' " about multiple line edit
@@ -53,17 +62,38 @@ Plug 'voldikss/vim-floaterm'
 " Easy align
 Plug 'junegunn/vim-easy-align'
 
+Plug 'Chiel92/vim-autoformat'
+
+" Plug 'tpope/vim-sensible'
+" Plug 'itchyny/lightline.vim'
+" Plug 'joshdick/onedark.vim'
+" Plug 'ap/vim-buftabline'
+" Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'dense-analysis/ale'
+" Plug 'majutsushi/tagbar'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'lepture/vim-jinja'
+" Plug 'alvan/vim-closetag'
+" Plug 'maxmellon/vim-jsx-pretty'
+
 " Initialize plugin system
 call plug#end()
+
+" Set Autoformat only for python
+au BufWrite *.py :Autoformat
+
+" Escape => kj
+inoremap kj <Esc>
 
 " Open/Hide float terminal => Alt + t
 map <A-t> :FloatermToggle<cr>
 tnoremap <A-t> <C-\><C-n>:FloatermHide!<cr>
 
-nnoremap <silent> <space>h :FloatermPrev<cr>
-nnoremap <silent> <space>[ :FloatermNew<cr>
-nnoremap <silent> <space>] :FloatermKill<cr>
-nnoremap <silent> <space>l :FloatermNext<cr>
+" Control Floterm => Alt + -_=+
+nnoremap <silent> <A--> :FloatermPrev<cr>
+nnoremap <silent> <A-_> :FloatermNext<cr>
+nnoremap <silent> <A-=> :FloatermNew<cr>
+nnoremap <silent> <A-+> :FloatermKill<cr>
 
 " Visual mode in float terminal => Alt + w
 tnoremap <A-w> <C-\><C-n>
@@ -87,6 +117,9 @@ map <A-S-m> :MarkdownPreviewStop<cr>
 " Open finder => Alt + f
 map <A-f> :Ag<cr>
 
+" Open finder => Alt + f
+map <A-g> :Rg<cr>
+
 " Move between windows => Ctrl + h, j, k, l
 
 " Select word => Alt + v
@@ -103,13 +136,16 @@ map <A-k> :wincmd K<cr>
 map <A-l> :wincmd L<cr>
 
 " Save & Quit => Alt + Enter
-map <A-CR> :wq<cr> 
+map <A-CR> :wq<cr>
 
 " Quit => Alt + w
-map <A-w> :q<cr> 
+map <A-w> :q<cr>
+
+" Quit force => Alt + q
+map <A-q> :q!<cr>
 
 " Save => Enter
-map <CR> :w<cr> 
+map <CR> :w<cr>
 
 " NERD Tree Toggle => .
 map <silent> . :NERDTreeToggle<CR>
@@ -158,15 +194,15 @@ let g:NERDTreeGitStatusWithFlags = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:NERDTreeGitStatusNodeColorization = 1
 let g:NERDTreeColorMapCustom = {
-    \ "Staged"    : "#0ee375",  
-    \ "Modified"  : "#d9bf91",  
-    \ "Renamed"   : "#51C9FC",  
-    \ "Untracked" : "#FCE77C",  
-    \ "Unmerged"  : "#FC51E6",  
-    \ "Dirty"     : "#FFBD61",  
-    \ "Clean"     : "#87939A",   
-    \ "Ignored"   : "#808080"   
-    \ }                         
+            \ "Staged"    : "#0ee375",
+            \ "Modified"  : "#d9bf91",
+            \ "Renamed"   : "#51C9FC",
+            \ "Untracked" : "#FCE77C",
+            \ "Unmerged"  : "#FC51E6",
+            \ "Dirty"     : "#FFBD61",
+            \ "Clean"     : "#87939A",
+            \ "Ignored"   : "#808080"
+            \ }
 
 let g:NERDTreeIgnore = ['^node_modules$','\.pyc$', '^__pycache__$', '\~$']
 
@@ -176,30 +212,30 @@ let NERDTreeStatusline="%{exists('b:NERDTree')?fnamemodify(b:NERDTree.root.path.
 let g:airline_theme = 'base16_gruvbox_dark_hard'
 
 function! AccentDemo()
-   let keys = ['춤','추','는','망','고']
-   for k in keys
-     call airline#parts#define_text(k, k)
-   endfor
-   call airline#parts#define_accent('춤', 'red')
-   call airline#parts#define_accent('추', 'red')
-   call airline#parts#define_accent('는', 'red')
-   call airline#parts#define_accent('망', 'red')
-   call airline#parts#define_accent('고', 'red')
-   let g:airline_section_a = airline#section#create(keys)
- endfunction
+    let keys = ['춤','추','는','망','고']
+    for k in keys
+        call airline#parts#define_text(k, k)
+    endfor
+    call airline#parts#define_accent('춤', 'red')
+    call airline#parts#define_accent('추', 'red')
+    call airline#parts#define_accent('는', 'red')
+    call airline#parts#define_accent('망', 'red')
+    call airline#parts#define_accent('고', 'red')
+    let g:airline_section_a = airline#section#create(keys)
+endfunction
 
 autocmd VimEnter * call AccentDemo()
- let g:airline#extensions#tabline#fnamemod = ':t'          " vim-airline 버퍼 목록 파일명만 출력
- let g:airline#extensions#tabline#buffer_nr_show = 1       " buffer number를 보여준다
- let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
- let g:airline#extensions#tabline#enabled = 1
- let g:airline#extensions#tabline#left_sep = ' '
- let g:airline#extensions#tabline#left_alt_sep = '>>>'
- let g:airline#extensions#branch#enabled = 1
- let g:airline#extensions#default#layout = [
- \ [ 'a', 'b', 'c'],
- \ [ 'z']
- \ ]
+let g:airline#extensions#tabline#fnamemod = ':t'          " vim-airline 버퍼 목록 파일명만 출력
+let g:airline#extensions#tabline#buffer_nr_show = 1       " buffer number를 보여준다
+let g:airline#extensions#tabline#buffer_nr_format = '%s:' " buffer number format
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '>>>'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#default#layout = [
+            \ [ 'a', 'b', 'c'],
+            \ [ 'z']
+            \ ]
 
 colorscheme gruvbox
 
@@ -228,8 +264,6 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " run prettier on save
 " let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-language en_US
 
 " ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -283,17 +317,17 @@ set listchars+=space:·
 
 " sync open file with NERDTree
 " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+function! IsNERDTreeOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " Call NERDTreeFind if NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
+    if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+        NERDTreeFind
+        wincmd p
+    endif
 endfunction
 
 " Highlight currently open buffer in NERDTree
@@ -301,13 +335,13 @@ autocmd BufEnter * call SyncTree()
 
 " coc config
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
-  \ ]
+            \ 'coc-snippets',
+            \ 'coc-pairs',
+            \ 'coc-tsserver',
+            \ 'coc-eslint',
+            \ 'coc-prettier',
+            \ 'coc-json',
+            \ ]
 
 " from readme
 " if hidden is not set, TextEdit might fail.
@@ -327,14 +361,14 @@ set signcolumn=yes
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " inoremap <silent><expr> <TAB>
-      "\ pumvisible() ? "\<C-n>" :
-      "\ <SID>check_back_space() ? "\<TAB>" :
-      "\ coc#refresh()
+            "\ pumvisible() ? "\<C-n>" :
+            "\ <SID>check_back_space() ? "\<TAB>" :
+            "\ coc#refresh()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion. => not working
@@ -364,11 +398,11 @@ nmap <silent> <A-a> <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -388,11 +422,11 @@ augroup nerdtree_open
 augroup END
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
