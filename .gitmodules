@@ -7,3 +7,6 @@
 [submodule "ensia96.github.io"]
 	path = ensia96.github.io
 	url = https://github.com/ensia96/ensia96.github.io.git
+[submodule "Python/Python/Django/aiffel_test"]
+	path = Python/Python/Django/aiffel_test
+	url = https://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@github.com/ensia96/aiffel_test.git
