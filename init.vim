@@ -34,6 +34,9 @@ Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 " For GraphQL
 Plug 'jparise/vim-graphql'
 
+" For Flutter, Dart => :CocInstall coc-flutter
+Plug 'dart-lang/dart-vim-plugin'
+
 " Utility for Vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " about coc
 Plug 'preservim/nerdtree' " about directory tree
@@ -81,6 +84,12 @@ call plug#end()
 
 " Set Autoformat only for python
 au BufWrite *.py :Autoformat
+au BufWrite *.cpp :Autoformat
+au BufWrite *.dart :Autoformat
+
+let g:autoformat_verbosemode=1
+" OR:
+let verbose=1
 
 " Escape => kj
 inoremap kj <Esc>
@@ -88,6 +97,9 @@ inoremap kj <Esc>
 " Open/Hide float terminal => Alt + t
 map <A-t> :FloatermToggle<cr>
 tnoremap <A-t> <C-\><C-n>:FloatermHide!<cr>
+
+" Open terminal in window => Alt + T
+map <A-T> :term<cr>
 
 " Control Floterm => Alt + -_=+
 nnoremap <silent> <A--> :FloatermPrev<cr>
@@ -117,7 +129,10 @@ map <A-S-m> :MarkdownPreviewStop<cr>
 " Open finder => Alt + f
 map <A-f> :Ag<cr>
 
-" Open finder => Alt + f
+" Open files => Alt + f
+map <A-S-f> :Files<cr>
+
+" Open finder => Alt + g
 map <A-g> :Rg<cr>
 
 " Move between windows => Ctrl + h, j, k, l
