@@ -176,6 +176,21 @@ map <A-[> <<
 map <A-'> zf
 map <A-"> zo
 
+" Rename variable => Alt + v
+nmap <A-v> <Plug>(coc-rename)
+
+" Show diagnostics => Alt + s
+nmap <silent> <A-s> <Plug>(coc-diagnostic-next)
+
+" Move cursor to definition => Alt + s
+nmap <silent> <A-a> <Plug>(coc-definition)
+" Show type definition => Alt + Shift + a
+nmap <silent> <A-S-a> <Plug>(coc-type-definition)
+" Show references => Alt + z
+nmap <silent> <A-z> <Plug>(coc-references)
+" Show implementation => Alt + Shift + z
+nmap <silent> <A-S-z> <Plug>(coc-implementation)
+
 " Manage coc extensions => space + e
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 
@@ -398,16 +413,16 @@ endfunction
 " Use `[g` and `]g` to navigate diagnostics
 " nmap <silent> [g <Plug>(coc-diagnostic-prev)
 " Show diagnostics => Alt + x
-nmap <silent> <A-x> <Plug>(coc-diagnostic-next)
+" nmap <silent> <A-x> <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 
 " Move cursor to definition => Alt + s
-nmap <silent> <A-s> <Plug>(coc-definition)
+" nmap <silent> <A-s> <Plug>(coc-definition)
 " Show references => Alt + a
-nmap <silent> <A-a> <Plug>(coc-references)
+" nmap <silent> <A-a> <Plug>(coc-references)
 
 " Preview documentation
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -424,7 +439,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Rename variable => Alt + v
-nmap <A-v> <Plug>(coc-rename)
+" nmap <A-v> <Plug>(coc-rename)
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
