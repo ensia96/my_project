@@ -10,6 +10,9 @@
 " Specify a directory for plugins
 call plug#begin()
 
+" Copilot
+Plug 'github/copilot.vim'
+
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
