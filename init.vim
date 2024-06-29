@@ -59,7 +59,7 @@ Plug 'scrooloose/syntastic'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'christoomey/vim-tmux-navigator' " allows cursor move between buffers
 
-" Markdown Preview
+" Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Float terminal
@@ -69,6 +69,9 @@ Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'Chiel92/vim-autoformat'
+
+" Syntax Highlight
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Plug 'tpope/vim-sensible'
 " Plug 'itchyny/lightline.vim'
@@ -475,7 +478,6 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
-
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
