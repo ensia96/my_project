@@ -1,3 +1,5 @@
+" js, jsx, graphql 코드 하이라이팅 아쉬움
+
 " ========================================================================
 "  플러그인 설치
 " ========================================================================
@@ -12,11 +14,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " 구문 강조
 " ------------------------------------
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" ------------------------------------
-" 코드 추적기
-" ------------------------------------
-Plug 'preservim/tagbar'
 
 " ------------------------------------
 " 파일 탐색기
@@ -608,12 +605,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " Plug 'jparise/vim-graphql'
 " GraphQL Syntax
 " au BufNewFile,BufRead *.prisma setfiletype graphql
-" ------------------------------------
-
-" ------------------------------------
-" Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-" prettier 강제 적용
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " ------------------------------------
 
 " ------------------------------------
